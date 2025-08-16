@@ -68,7 +68,7 @@ const sampleLessons: Lesson[] = [
 ];
 
 const Index = () => {
-  const [currentLesson, setCurrentLesson] = useState<Lesson>(sampleLessons[2]); // Currently watching lesson 3
+  const [currentLesson, setCurrentLesson] = useState<Lesson>(sampleLessons[2]);
   const [startTime, setStartTime] = useState(0);
 
   const handleLessonSelect = (lesson: Lesson) => {
@@ -90,15 +90,12 @@ const Index = () => {
     }
   };
 
-  const completedLessons = sampleLessons.filter(l => l.completed).length;
-
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-          {/* Video area - takes 3 columns */}
-          <div className="lg:col-span-3 space-y-4">
-            {/* Video player */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Video area */}
+          <div className="lg:col-span-2">
             <div className="aspect-video bg-black rounded-lg overflow-hidden">
               <YouTubePlayer
                 key={`${currentLesson.videoId}-${startTime}`}
@@ -106,68 +103,23 @@ const Index = () => {
                 startTime={startTime}
               />
             </div>
-            
-            {/* Current lesson info - compact */}
-            <div className="bg-card rounded-lg p-4 border border-border">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <div className="p-1.5 bg-primary/10 rounded-md">
-                    <PlayCircle className="h-4 w-4 text-primary" />
-                  </div>
-                  <span className="text-sm font-medium text-primary">Current Lesson</span>
-                </div>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{currentLesson.duration}</span>
-                  </div>
-                  <span>Lesson {sampleLessons.findIndex(l => l.id === currentLesson.id) + 1} of {sampleLessons.length}</span>
-                </div>
-              </div>
-              
-              <h2 className="text-lg font-semibold text-foreground mb-2 leading-tight">
-                {currentLesson.title}
-              </h2>
-              
-              <p className="text-sm text-muted-foreground leading-normal mb-3">
-                {currentLesson.description}
-              </p>
-              
-              <div className="flex items-center gap-2">
-                <div className={cn(
-                  "w-2 h-2 rounded-full",
-                  currentLesson.completed ? "bg-green-500" : "bg-blue-500"
-                )} />
-                <span className="text-sm text-foreground">
-                  {currentLesson.completed ? 'Completed' : 'In Progress'}
-                </span>
-              </div>
-            </div>
-
-            {/* Mobile lesson list */}
-            <div className="lg:hidden bg-card rounded-lg p-4 border border-border">
-              <LessonList
-                lessons={sampleLessons}
-                currentLessonId={currentLesson.id}
-                onLessonSelect={handleLessonSelect}
-              />
-            </div>
           </div>
           
-          {/* Right sidebar - takes 1 column */}
-          <div className="lg:col-span-1 space-y-4">
-            {/* Chat interface */}
-            <div className="h-[600px]">
-              <ChatInterface onTimestampClick={handleTimestampClick} />
-            </div>
-            
-            {/* Desktop lesson list */}
-            <div className="hidden lg:block bg-card rounded-lg p-3 border border-border max-h-[300px] overflow-hidden">
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Video Titles */}
+            <div className="bg-card rounded-lg p-4 border">
+              <h3 className="font-semibold mb-4">Videos</h3>
               <LessonList
                 lessons={sampleLessons}
                 currentLessonId={currentLesson.id}
                 onLessonSelect={handleLessonSelect}
               />
+            </div>
+            
+            {/* Chat */}
+            <div className="h-[500px]">
+              <ChatInterface onTimestampClick={handleTimestampClick} />
             </div>
           </div>
         </div>

@@ -108,96 +108,57 @@ Would you like me to go deeper into any specific aspect?`,
   };
 
   return (
-    <div className="h-full flex flex-col bg-card rounded-lg border border-border overflow-hidden">
-      {/* Compact header */}
-      <div className="p-4 bg-primary border-b border-border">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-white/20 rounded-lg">
-            <Brain className="h-5 w-5 text-white" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-sm font-semibold text-white">AI Assistant</h3>
-            <p className="text-white/80 text-xs">Powered by RAG</p>
-          </div>
-          <Badge className="bg-white/20 text-white border-white/30 text-xs">
-            <Zap className="h-3 w-3 mr-1" />
-            Active
-          </Badge>
-        </div>
+    <div className="h-full flex flex-col bg-card rounded-lg border overflow-hidden">
+      {/* Header */}
+      <div className="p-3 bg-primary border-b">
+        <h3 className="text-sm font-semibold text-white">Chat</h3>
       </div>
 
-      {/* Messages area */}
-      <div className="flex-1 flex flex-col p-4">
+      {/* Messages */}
+      <div className="flex-1 flex flex-col p-3">
         <div className="flex-1 overflow-y-auto space-y-3">
-          {messages.map((message, index) => (
+          {messages.map((message) => (
             <div
               key={message.id}
               className={cn(
-                "flex gap-2 max-w-[85%]",
-                message.sender === 'user' ? "ml-auto" : "mr-auto"
+                "flex gap-2",
+                message.sender === 'user' ? "justify-end" : "justify-start"
               )}
             >
               <div className={cn(
-                "flex gap-2 w-full",
-                message.sender === 'user' ? "flex-row-reverse" : ""
+                "rounded-lg px-3 py-2 max-w-[80%]",
+                message.sender === 'user'
+                  ? "bg-primary text-white"
+                  : "bg-muted"
               )}>
-                {/* Avatar */}
-                <div className={cn(
-                  "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs",
-                  message.sender === 'user' 
-                    ? "bg-primary" 
-                    : "bg-accent"
-                )}>
-                  {message.sender === 'user' ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
-                </div>
-
-                {/* Message bubble */}
-                <div className={cn(
-                  "rounded-lg px-3 py-2 max-w-full",
-                  message.sender === 'user'
-                    ? "bg-primary text-white"
-                    : "bg-muted text-foreground"
-                )}>
-                  <div className="text-sm leading-relaxed">
-                    {parseMessageContent(message.content).map((part, partIndex) => (
-                      <span key={partIndex}>
-                        {part.type === 'link' ? (
-                          <Button
-                            variant="link"
-                            size="sm"
-                            className="p-0 h-auto text-accent hover:text-accent/80 underline inline-flex items-center gap-1 text-sm"
-                            onClick={() => onTimestampClick?.(part.videoId!, part.timestamp!)}
-                          >
-                            {part.content}
-                            <ExternalLink className="h-3 w-3" />
-                          </Button>
-                        ) : (
-                          part.content
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                  <div className={cn(
-                    "text-xs mt-1 opacity-70",
-                    message.sender === 'user' ? "text-white/80" : "text-muted-foreground"
-                  )}>
-                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </div>
+                <div className="text-sm">
+                  {parseMessageContent(message.content).map((part, partIndex) => (
+                    <span key={partIndex}>
+                      {part.type === 'link' ? (
+                        <Button
+                          variant="link"
+                          size="sm"
+                          className="p-0 h-auto text-accent hover:text-accent/80 underline inline-flex items-center gap-1 text-xs"
+                          onClick={() => onTimestampClick?.(part.videoId!, part.timestamp!)}
+                        >
+                          {part.content}
+                          <ExternalLink className="h-3 w-3" />
+                        </Button>
+                      ) : (
+                        part.content
+                      )}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
           ))}
 
-          {/* Loading indicator */}
           {isLoading && (
-            <div className="flex gap-2 max-w-[85%]">
-              <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
-                <Bot className="h-4 w-4 text-white" />
-              </div>
+            <div className="flex justify-start">
               <div className="bg-muted rounded-lg px-3 py-2">
                 <div className="flex items-center gap-2 text-muted-foreground">
-                  <MessageCircle className="h-3 w-3" />
-                  <span className="text-sm">Analyzing...</span>
+                  <span className="text-xs">Thinking...</span>
                   <div className="flex space-x-1">
                     <div className="w-1 h-1 bg-primary rounded-full animate-bounce" />
                     <div className="w-1 h-1 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
@@ -210,54 +171,23 @@ Would you like me to go deeper into any specific aspect?`,
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input area */}
-        <div className="mt-3 p-3 bg-muted/30 rounded-lg">
-          <div className="flex gap-2">
-            <Input
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Ask about the course..."
-              className="flex-1 border-0 bg-transparent text-sm"
-              disabled={isLoading}
-            />
-            <Button
-              onClick={handleSendMessage}
-              disabled={!inputValue.trim() || isLoading}
-              size="sm"
-              className="bg-primary hover:bg-primary/90"
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          </div>
-          
-          {/* Quick suggestions */}
-          <div className="flex flex-wrap gap-1 mt-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-xs h-6 px-2 bg-accent/10 hover:bg-accent/20 text-accent"
-              onClick={() => setInputValue("What is useState?")}
-            >
-              useState?
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-xs h-6 px-2 bg-primary/10 hover:bg-primary/20 text-primary"
-              onClick={() => setInputValue("Explain props")}
-            >
-              Props
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-xs h-6 px-2 bg-accent/10 hover:bg-accent/20 text-accent"
-              onClick={() => setInputValue("About hooks")}
-            >
-              Hooks
-            </Button>
-          </div>
+        {/* Input */}
+        <div className="mt-3 flex gap-2">
+          <Input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Ask anything..."
+            className="flex-1"
+            disabled={isLoading}
+          />
+          <Button
+            onClick={handleSendMessage}
+            disabled={!inputValue.trim() || isLoading}
+            size="sm"
+          >
+            <Send className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </div>
