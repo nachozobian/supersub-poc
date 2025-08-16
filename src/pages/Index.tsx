@@ -93,14 +93,13 @@ const Index = () => {
   const completedLessons = sampleLessons.filter(l => l.completed).length;
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Simple main content */}
-      <div className="max-w-7xl mx-auto p-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Video area */}
-          <div className="lg:col-span-2 space-y-4">
+    <div className="min-h-screen bg-background p-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          {/* Video area - takes 3 columns */}
+          <div className="lg:col-span-3 space-y-4">
             {/* Video player */}
-            <div className="aspect-video bg-card rounded-xl shadow-sm overflow-hidden border border-border">
+            <div className="aspect-video bg-black rounded-lg overflow-hidden">
               <YouTubePlayer
                 key={`${currentLesson.videoId}-${startTime}`}
                 videoId={currentLesson.videoId}
@@ -108,55 +107,62 @@ const Index = () => {
               />
             </div>
             
-            {/* Current lesson info */}
-            <div className="bg-card rounded-xl p-6 shadow-sm border border-border">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <PlayCircle className="h-5 w-5 text-primary" />
-                </div>
-                <span className="text-sm font-semibold text-primary">Current Lesson</span>
-                <div className="flex items-center gap-2 text-muted-foreground ml-auto">
-                  <Clock className="h-4 w-4" />
-                  <span className="text-sm font-medium">{currentLesson.duration}</span>
-                </div>
-              </div>
-              
-              <h2 className="text-xl font-semibold text-foreground mb-2">
-                {currentLesson.title}
-              </h2>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                {currentLesson.description}
-              </p>
-              
-              <div className="flex items-center justify-between mt-4">
+            {/* Current lesson info - compact */}
+            <div className="bg-card rounded-lg p-4 border border-border">
+              <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <div className={cn(
-                    "w-3 h-3 rounded-full",
-                    currentLesson.completed ? "bg-green-500" : "bg-blue-500"
-                  )} />
-                  <span className="text-sm font-medium text-foreground">
-                    {currentLesson.completed ? 'Completed' : 'In Progress'}
-                  </span>
+                  <div className="p-1.5 bg-primary/10 rounded-md">
+                    <PlayCircle className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="text-sm font-medium text-primary">Current Lesson</span>
                 </div>
-                
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <BookOpen className="h-4 w-4" />
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    <span>{currentLesson.duration}</span>
+                  </div>
                   <span>Lesson {sampleLessons.findIndex(l => l.id === currentLesson.id) + 1} of {sampleLessons.length}</span>
                 </div>
               </div>
+              
+              <h2 className="text-lg font-semibold text-foreground mb-2 leading-tight">
+                {currentLesson.title}
+              </h2>
+              
+              <p className="text-sm text-muted-foreground leading-normal mb-3">
+                {currentLesson.description}
+              </p>
+              
+              <div className="flex items-center gap-2">
+                <div className={cn(
+                  "w-2 h-2 rounded-full",
+                  currentLesson.completed ? "bg-green-500" : "bg-blue-500"
+                )} />
+                <span className="text-sm text-foreground">
+                  {currentLesson.completed ? 'Completed' : 'In Progress'}
+                </span>
+              </div>
+            </div>
+
+            {/* Mobile lesson list */}
+            <div className="lg:hidden bg-card rounded-lg p-4 border border-border">
+              <LessonList
+                lessons={sampleLessons}
+                currentLessonId={currentLesson.id}
+                onLessonSelect={handleLessonSelect}
+              />
             </div>
           </div>
           
-          {/* Chat area - right of video */}
+          {/* Right sidebar - takes 1 column */}
           <div className="lg:col-span-1 space-y-4">
             {/* Chat interface */}
-            <div className="h-[70vh] min-h-[600px]">
+            <div className="h-[600px]">
               <ChatInterface onTimestampClick={handleTimestampClick} />
             </div>
             
-            {/* Lesson list */}
-            <div className="bg-card rounded-xl p-4 shadow-sm border border-border">
+            {/* Desktop lesson list */}
+            <div className="hidden lg:block bg-card rounded-lg p-3 border border-border max-h-[300px] overflow-hidden">
               <LessonList
                 lessons={sampleLessons}
                 currentLessonId={currentLesson.id}

@@ -108,98 +108,68 @@ Would you like me to go deeper into any specific aspect?`,
   };
 
   return (
-    <div className="h-full flex flex-col bg-gradient-card rounded-4xl shadow-hero border border-border/50 overflow-hidden backdrop-blur-sm">
-      {/* Enhanced header with clear personality */}
-      <div className="relative p-xl pb-lg bg-gradient-hero overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-lg right-lg w-16 h-16 bg-white/10 rounded-[60%_40%_70%_30%] animate-gentle-float" />
-        <div className="absolute bottom-sm left-xl w-12 h-12 bg-white/5 rounded-[40%_60%_30%_70%] animate-gentle-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 w-8 h-8 bg-white/5 rounded-full animate-gentle-float" style={{ animationDelay: '4s' }} />
-        
-        <div className="relative flex items-center gap-md">
-          <div className="p-md rounded-3xl bg-white/20 backdrop-blur-sm shadow-handmade interactive-hover">
-            <Brain className="h-8 w-8 text-white" />
+    <div className="h-full flex flex-col bg-card rounded-lg border border-border overflow-hidden">
+      {/* Compact header */}
+      <div className="p-4 bg-primary border-b border-border">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-white/20 rounded-lg">
+            <Brain className="h-5 w-5 text-white" />
           </div>
-          <div className="flex-1 space-y-1">
-            <h3 className="text-lg font-semibold text-white">AI Assistant</h3>
-            <p className="text-white/90 text-sm">Powered by RAG Technology</p>
+          <div className="flex-1">
+            <h3 className="text-sm font-semibold text-white">AI Assistant</h3>
+            <p className="text-white/80 text-xs">Powered by RAG</p>
           </div>
-          <div className="flex gap-sm">
-            <Badge 
-              variant="secondary" 
-              className="bg-white/20 text-white border-white/30 rounded-full backdrop-blur-sm text-sm font-medium px-md py-xs"
-            >
-              <Zap className="h-4 w-4 mr-xs" />
-              Active
-            </Badge>
-          </div>
-        </div>
-        
-        <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
-          <div className="text-center">
-            <div className="text-white/90 font-medium">Transcripts</div>
-            <div className="text-white text-sm font-bold">Complete</div>
-          </div>
-          <div className="text-center">
-            <div className="text-white/90 font-medium">Responses</div>
-            <div className="text-white text-sm font-bold">Instant</div>
-          </div>
-          <div className="text-center">
-            <div className="text-white/90 font-medium">Navigation</div>
-            <div className="text-white text-sm font-bold">Smart</div>
-          </div>
+          <Badge className="bg-white/20 text-white border-white/30 text-xs">
+            <Zap className="h-3 w-3 mr-1" />
+            Active
+          </Badge>
         </div>
       </div>
 
-      {/* Enhanced messages area with better spacing */}
-      <div className="flex-1 flex flex-col p-xl pt-lg">
-        <div className="flex-1 overflow-y-auto space-cozy pr-sm">
+      {/* Messages area */}
+      <div className="flex-1 flex flex-col p-4">
+        <div className="flex-1 overflow-y-auto space-y-3">
           {messages.map((message, index) => (
             <div
               key={message.id}
               className={cn(
-                "flex gap-md max-w-[90%] animate-slide-up",
+                "flex gap-2 max-w-[85%]",
                 message.sender === 'user' ? "ml-auto" : "mr-auto"
               )}
-              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div
-                className={cn(
-                  "flex gap-md w-full",
-                  message.sender === 'user' ? "flex-row-reverse" : ""
-                )}
-              >
-                {/* Enhanced avatar with personality */}
+              <div className={cn(
+                "flex gap-2 w-full",
+                message.sender === 'user' ? "flex-row-reverse" : ""
+              )}>
+                {/* Avatar */}
                 <div className={cn(
-                  "flex-shrink-0 w-12 h-12 rounded-3xl flex items-center justify-center text-white text-sm font-bold shadow-handmade transition-organic",
+                  "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs",
                   message.sender === 'user' 
-                    ? "bg-gradient-primary interactive-hover" 
-                    : "bg-gradient-secondary hover:scale-105"
+                    ? "bg-primary" 
+                    : "bg-accent"
                 )}>
-                  {message.sender === 'user' ? <User className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
+                  {message.sender === 'user' ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
                 </div>
 
-                {/* Enhanced message bubble with better typography */}
-                <div
-                  className={cn(
-                    "rounded-4xl px-lg py-lg max-w-full transition-organic shadow-organic",
-                    message.sender === 'user'
-                      ? "bg-gradient-primary text-white shadow-handmade interactive-hover"
-                      : "bg-gradient-card border border-border/50 hover:shadow-float text-foreground"
-                  )}
-                >
-                  <div className="text-base leading-relaxed">
+                {/* Message bubble */}
+                <div className={cn(
+                  "rounded-lg px-3 py-2 max-w-full",
+                  message.sender === 'user'
+                    ? "bg-primary text-white"
+                    : "bg-muted text-foreground"
+                )}>
+                  <div className="text-sm leading-relaxed">
                     {parseMessageContent(message.content).map((part, partIndex) => (
                       <span key={partIndex}>
                         {part.type === 'link' ? (
                           <Button
                             variant="link"
                             size="sm"
-                            className="p-0 h-auto text-accent hover:text-accent/80 underline inline-flex items-center gap-xs font-semibold text-base interactive-hover focus-ring"
+                            className="p-0 h-auto text-accent hover:text-accent/80 underline inline-flex items-center gap-1 text-sm"
                             onClick={() => onTimestampClick?.(part.videoId!, part.timestamp!)}
                           >
                             {part.content}
-                            <ExternalLink className="h-4 w-4" />
+                            <ExternalLink className="h-3 w-3" />
                           </Button>
                         ) : (
                           part.content
@@ -208,7 +178,7 @@ Would you like me to go deeper into any specific aspect?`,
                     ))}
                   </div>
                   <div className={cn(
-                    "text-xs mt-md opacity-70 font-medium",
+                    "text-xs mt-1 opacity-70",
                     message.sender === 'user' ? "text-white/80" : "text-muted-foreground"
                   )}>
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -218,20 +188,20 @@ Would you like me to go deeper into any specific aspect?`,
             </div>
           ))}
 
-          {/* Enhanced loading indicator */}
+          {/* Loading indicator */}
           {isLoading && (
-            <div className="flex gap-md max-w-[90%] animate-slide-up">
-              <div className="flex-shrink-0 w-12 h-12 rounded-3xl bg-gradient-secondary flex items-center justify-center shadow-handmade">
-                <Bot className="h-6 w-6 text-white" />
+            <div className="flex gap-2 max-w-[85%]">
+              <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
+                <Bot className="h-4 w-4 text-white" />
               </div>
-              <div className="bg-gradient-card border border-border/50 rounded-4xl px-lg py-lg shadow-organic">
-                <div className="flex items-center gap-sm text-muted-foreground">
-                  <MessageCircle className="h-4 w-4 animate-subtle-pulse" />
-                  <span className="text-sm font-medium">Analyzing your question</span>
-                  <div className="flex space-x-1 ml-sm">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                    <div className="w-2 h-2 bg-teal rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+              <div className="bg-muted rounded-lg px-3 py-2">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MessageCircle className="h-3 w-3" />
+                  <span className="text-sm">Analyzing...</span>
+                  <div className="flex space-x-1">
+                    <div className="w-1 h-1 bg-primary rounded-full animate-bounce" />
+                    <div className="w-1 h-1 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                    <div className="w-1 h-1 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                   </div>
                 </div>
               </div>
@@ -240,49 +210,50 @@ Would you like me to go deeper into any specific aspect?`,
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Enhanced input area with clear CTAs */}
-        <div className="mt-lg p-md bg-muted/30 rounded-3xl border border-border/50 backdrop-blur-sm">
-          <div className="flex gap-md">
+        {/* Input area */}
+        <div className="mt-3 p-3 bg-muted/30 rounded-lg">
+          <div className="flex gap-2">
             <Input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask about the course, concepts, or request to go to a specific moment..."
-              className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-base placeholder:text-muted-foreground font-medium py-lg px-lg rounded-2xl"
+              placeholder="Ask about the course..."
+              className="flex-1 border-0 bg-transparent text-sm"
               disabled={isLoading}
             />
             <Button
               onClick={handleSendMessage}
               disabled={!inputValue.trim() || isLoading}
-              className="bg-gradient-primary hover:opacity-95 transition-organic shadow-handmade rounded-2xl px-lg py-lg interactive-hover focus-ring group"
+              size="sm"
+              className="bg-primary hover:bg-primary/90"
             >
-              <Send className="h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-bounce" />
+              <Send className="h-4 w-4" />
             </Button>
           </div>
           
-          {/* Quick action suggestions */}
-          <div className="flex flex-wrap gap-xs mt-md">
+          {/* Quick suggestions */}
+          <div className="flex flex-wrap gap-1 mt-2">
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs bg-accent/5 hover:bg-accent/10 text-accent border border-accent/20 rounded-full px-sm py-xs transition-gentle"
+              className="text-xs h-6 px-2 bg-accent/10 hover:bg-accent/20 text-accent"
               onClick={() => setInputValue("What is useState?")}
             >
-              What is useState?
+              useState?
             </Button>
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs bg-teal/5 hover:bg-teal/10 text-teal border border-teal/20 rounded-full px-sm py-xs transition-gentle"
-              onClick={() => setInputValue("Explain props to me")}
+              className="text-xs h-6 px-2 bg-primary/10 hover:bg-primary/20 text-primary"
+              onClick={() => setInputValue("Explain props")}
             >
               Props
             </Button>
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs bg-primary/5 hover:bg-primary/10 text-primary border border-primary/20 rounded-full px-sm py-xs transition-gentle"
-              onClick={() => setInputValue("I want to see about hooks")}
+              className="text-xs h-6 px-2 bg-accent/10 hover:bg-accent/20 text-accent"
+              onClick={() => setInputValue("About hooks")}
             >
               Hooks
             </Button>
