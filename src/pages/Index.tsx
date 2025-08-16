@@ -93,10 +93,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background p-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Video area */}
-          <div className="lg:col-span-3">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Video area - expanded */}
+          <div className="lg:col-span-4">
             <div className="aspect-video bg-black rounded-lg overflow-hidden">
               <YouTubePlayer
                 key={`${currentLesson.videoId}-${startTime}`}
@@ -106,9 +106,9 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Sidebar */}
+          {/* Compact Sidebar */}
           <div className="bg-card rounded-lg p-4 border">
-            <h3 className="font-semibold mb-4">Videos</h3>
+            <h3 className="font-semibold mb-4 text-sm">Videos</h3>
             <LessonList
               lessons={sampleLessons}
               currentLessonId={currentLesson.id}
