@@ -159,6 +159,7 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 5% 96%;
     --sidebar-border: 240 4% 16%;
     --sidebar-ring: 224 76% 58%;
+  }
 }
 
 /* Enhanced typography system with clear hierarchy */
