@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { YouTubePlayer } from '@/components/YouTubePlayer';
 import { LessonList, type Lesson } from '@/components/LessonList';
 import { ChatInterface } from '@/components/ChatInterface';
-import { CourseHeader } from '@/components/CourseHeader';
-import { Clock, PlayCircle, BookOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Simple course data
@@ -92,10 +93,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Video area */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="aspect-video bg-black rounded-lg overflow-hidden">
               <YouTubePlayer
                 key={`${currentLesson.videoId}-${startTime}`}
@@ -106,24 +107,31 @@ const Index = () => {
           </div>
           
           {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Video Titles */}
-            <div className="bg-card rounded-lg p-4 border">
-              <h3 className="font-semibold mb-4">Videos</h3>
-              <LessonList
-                lessons={sampleLessons}
-                currentLessonId={currentLesson.id}
-                onLessonSelect={handleLessonSelect}
-              />
-            </div>
-            
-            {/* Chat */}
-            <div className="h-[500px]">
-              <ChatInterface onTimestampClick={handleTimestampClick} />
-            </div>
+          <div className="bg-card rounded-lg p-4 border">
+            <h3 className="font-semibold mb-4">Videos</h3>
+            <LessonList
+              lessons={sampleLessons}
+              currentLessonId={currentLesson.id}
+              onLessonSelect={handleLessonSelect}
+            />
           </div>
         </div>
       </div>
+
+      {/* Floating Chat Button */}
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button
+            size="lg"
+            className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <MessageCircle className="h-6 w-6" />
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-2xl w-full h-[600px] p-0">
+          <ChatInterface onTimestampClick={handleTimestampClick} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
