@@ -8,53 +8,60 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Educational theme colors */
-    --background: 240 10% 98%;
-    --foreground: 240 10% 15%;
+    /* Handmade-inspired color palette */
+    --background: 249 252 255;
+    --foreground: 17 24 39;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 15%;
+    --card: 255 255 255;
+    --card-foreground: 17 24 39;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 15%;
+    --popover: 255 255 255;
+    --popover-foreground: 17 24 39;
 
-    /* Educational primary - deep blue */
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 221 100% 85%;
+    /* Creative primary - warm orange inspired by handmade aesthetics */
+    --primary: 24 83% 57%;
+    --primary-foreground: 255 255 255;
+    --primary-glow: 24 100% 75%;
 
-    /* Educational secondary - soft purple */
-    --secondary: 250 100% 96%;
-    --secondary-foreground: 250 40% 20%;
+    /* Handmade secondary - soft cream */
+    --secondary: 45 25% 95%;
+    --secondary-foreground: 17 24 39;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 210 14% 97%;
+    --muted-foreground: 107 14% 46%;
 
-    /* Educational accent - vibrant purple */
-    --accent: 262 83% 58%;
-    --accent-foreground: 0 0% 100%;
-    --accent-glow: 262 100% 85%;
+    /* Creative accent - vibrant teal */
+    --accent: 168 85% 52%;
+    --accent-foreground: 255 255 255;
+    --accent-glow: 168 100% 75%;
+
+    /* Warm coral for highlights */
+    --coral: 14 91% 66%;
+    --coral-glow: 14 100% 85%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 255 255 255;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 221 83% 53%;
+    --border: 220 14% 91%;
+    --input: 220 14% 96%;
+    --ring: 24 83% 57%;
 
-    /* Educational gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--primary-glow)), hsl(var(--accent-glow)));
-    --gradient-background: linear-gradient(180deg, hsl(var(--background)), hsl(240 10% 96%));
+    /* Handmade-style gradients */
+    --gradient-primary: linear-gradient(125deg, hsl(var(--primary)), hsl(var(--coral)));
+    --gradient-secondary: linear-gradient(155deg, hsl(var(--accent)), hsl(var(--primary-glow)));
+    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--primary-glow) / 0.1), hsl(var(--accent-glow) / 0.05) 50%, transparent 70%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(210 14% 99%));
 
-    /* Educational shadows */
-    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.15);
-    --shadow-elegant: 0 10px 40px -10px hsl(var(--primary) / 0.2);
+    /* Organic shadows with warmth */
+    --shadow-organic: 0 8px 32px hsl(var(--primary) / 0.12), 0 2px 8px hsl(var(--primary) / 0.08);
+    --shadow-float: 0 12px 48px -8px hsl(var(--coral) / 0.25);
+    --shadow-handmade: 2px 4px 12px hsl(var(--accent) / 0.15), -1px 2px 8px hsl(var(--primary) / 0.1);
 
-    /* Smooth transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Smooth organic transitions */
+    --transition-organic: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --radius: 0.75rem;
+    --radius: 1.25rem;
 
     --sidebar-background: 0 0% 98%;
 

@@ -111,20 +111,31 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   };
 
   return (
-    <Card className="h-full flex flex-col bg-gradient-to-b from-card to-secondary/20">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="p-2 rounded-full bg-gradient-primary">
-            <Bot className="h-5 w-5 text-white" />
+    <div className="h-full flex flex-col bg-gradient-card rounded-3xl shadow-float border border-border/50 overflow-hidden">
+      {/* Header with handmade style */}
+      <div className="relative p-6 pb-4 bg-gradient-primary">
+        <div className="absolute top-4 right-4 w-12 h-12 bg-white/10 rounded-full animate-float" />
+        <div className="absolute bottom-2 left-8 w-8 h-8 bg-white/5 rounded-[60%_40%_70%_30%] animate-float" style={{ animationDelay: '2s' }} />
+        
+        <div className="relative flex items-center gap-3">
+          <div className="p-3 rounded-2xl bg-white/20 backdrop-blur-sm shadow-handmade">
+            <Bot className="h-6 w-6 text-white" />
           </div>
-          Asistente de Aprendizaje
-          <Badge variant="secondary" className="ml-auto">
-            RAG Enabled
+          <div>
+            <h3 className="text-xl font-bold text-white">Asistente IA</h3>
+            <p className="text-white/80 text-sm">Con tecnología RAG</p>
+          </div>
+          <Badge 
+            variant="secondary" 
+            className="ml-auto bg-white/20 text-white border-white/30 rounded-full backdrop-blur-sm"
+          >
+            Online
           </Badge>
-        </CardTitle>
-      </CardHeader>
+        </div>
+      </div>
 
-      <CardContent className="flex-1 flex flex-col p-4 pt-0">
+      {/* Messages area */}
+      <div className="flex-1 flex flex-col p-6 pt-4">
         <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
           {messages.map((message) => (
             <div
@@ -134,28 +145,28 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
                 message.sender === 'user' ? "ml-auto" : "mr-auto"
               )}
             >
-              <div
-                className={cn(
-                  "flex gap-3 w-full",
-                  message.sender === 'user' ? "flex-row-reverse" : ""
-                )}
-              >
-                <div className={cn(
-                  "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium",
-                  message.sender === 'user' 
-                    ? "bg-gradient-primary" 
-                    : "bg-gradient-to-r from-accent to-primary"
-                )}>
-                  {message.sender === 'user' ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
-                </div>
-
                 <div
                   className={cn(
-                    "rounded-2xl px-4 py-3 max-w-full transition-all duration-300",
-                    message.sender === 'user'
-                      ? "bg-primary text-primary-foreground shadow-elegant"
-                      : "bg-muted border border-border hover:shadow-md"
+                    "flex gap-3 w-full",
+                    message.sender === 'user' ? "flex-row-reverse" : ""
                   )}
+                >
+                  <div className={cn(
+                    "flex-shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center text-white text-sm font-bold shadow-handmade",
+                    message.sender === 'user' 
+                      ? "bg-gradient-primary transform hover:scale-105 transition-bounce" 
+                      : "bg-gradient-secondary transform hover:wiggle"
+                  )}>
+                    {message.sender === 'user' ? <User className="h-5 w-5" /> : <Bot className="h-5 w-5" />}
+                  </div>
+
+                  <div
+                    className={cn(
+                      "rounded-3xl px-5 py-4 max-w-full transition-organic shadow-organic",
+                      message.sender === 'user'
+                        ? "bg-gradient-primary text-white shadow-handmade transform hover:scale-105"
+                        : "bg-gradient-card border border-border/50 hover:shadow-float text-foreground"
+                    )}
                 >
                   <div className="text-sm leading-relaxed">
                     {parseMessageContent(message.content).map((part, index) => (
@@ -164,7 +175,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
                           <Button
                             variant="link"
                             size="sm"
-                            className="p-0 h-auto text-accent hover:text-accent/80 underline inline-flex items-center gap-1"
+                            className="p-0 h-auto text-accent hover:text-accent/80 underline inline-flex items-center gap-1 font-medium"
                             onClick={() => onTimestampClick?.(part.videoId!, part.timestamp!)}
                           >
                             {part.content}
@@ -176,7 +187,10 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
                       </span>
                     ))}
                   </div>
-                  <div className="text-xs opacity-70 mt-2">
+                  <div className={cn(
+                    "text-xs mt-3 opacity-60",
+                    message.sender === 'user' ? "text-white/80" : "text-muted-foreground"
+                  )}>
                     {message.timestamp.toLocaleTimeString()}
                   </div>
                 </div>
@@ -186,14 +200,14 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
 
           {isLoading && (
             <div className="flex gap-3 max-w-[85%]">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-accent to-primary flex items-center justify-center">
-                <Bot className="h-4 w-4 text-white" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-2xl bg-gradient-secondary flex items-center justify-center shadow-handmade">
+                <Bot className="h-5 w-5 text-white" />
               </div>
-              <div className="bg-muted border border-border rounded-2xl px-4 py-3">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+              <div className="bg-gradient-card border border-border/50 rounded-3xl px-5 py-4 shadow-organic">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 bg-primary rounded-full animate-bounce" />
+                  <div className="w-3 h-3 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                  <div className="w-3 h-3 bg-coral rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                 </div>
               </div>
             </div>
@@ -201,24 +215,25 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="flex gap-2">
+        {/* Input area with handmade style */}
+        <div className="flex gap-3 p-2 bg-muted/30 rounded-2xl border border-border/50">
           <Input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Pregunta sobre el curso..."
-            className="flex-1 transition-all duration-300 focus:shadow-glow"
+            placeholder="Haz una pregunta sobre el curso..."
+            className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-base placeholder:text-muted-foreground"
             disabled={isLoading}
           />
           <Button
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || isLoading}
-            className="bg-gradient-primary hover:opacity-90 transition-all duration-300 shadow-elegant"
+            className="bg-gradient-primary hover:opacity-90 transition-bounce shadow-handmade rounded-xl px-4 py-2"
           >
-            <Send className="h-4 w-4" />
+            <Send className="h-5 w-5" />
           </Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };

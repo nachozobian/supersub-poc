@@ -3,6 +3,8 @@ import { YouTubePlayer } from '@/components/YouTubePlayer';
 import { LessonList, type Lesson } from '@/components/LessonList';
 import { ChatInterface } from '@/components/ChatInterface';
 import { CourseHeader } from '@/components/CourseHeader';
+import { Clock } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 // Sample course data
 const courseData = {
@@ -92,31 +94,50 @@ const Index = () => {
       />
       
       <div className="max-w-7xl mx-auto p-6">
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 h-[calc(100vh-200px)]">
-          {/* Main content area */}
-          <div className="xl:col-span-3 space-y-6">
-            {/* Video player */}
-            <div className="aspect-video bg-card rounded-lg shadow-elegant overflow-hidden">
-              <YouTubePlayer
-                key={`${currentLesson.videoId}-${startTime}`}
-                videoId={currentLesson.videoId}
-                startTime={startTime}
-              />
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 h-[calc(100vh-200px)]">
+          {/* Main content area - now taking 2 columns */}
+          <div className="xl:col-span-2 space-y-6">
+            {/* Video player with organic styling */}
+            <div className="relative group">
+              <div className="aspect-video bg-gradient-card rounded-3xl shadow-float overflow-hidden border border-border/50 transform hover:scale-[1.02] transition-organic">
+                <YouTubePlayer
+                  key={`${currentLesson.videoId}-${startTime}`}
+                  videoId={currentLesson.videoId}
+                  startTime={startTime}
+                />
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-primary rounded-full animate-handmade-pulse opacity-60" />
+              <div className="absolute -bottom-3 -left-3 w-4 h-4 bg-accent/60 rounded-[60%_40%_70%_30%] animate-float" />
             </div>
             
-            {/* Current lesson info */}
-            <div className="bg-card rounded-lg p-6 shadow-elegant border border-border/50">
-              <h2 className="text-2xl font-bold mb-2">{currentLesson.title}</h2>
-              <p className="text-muted-foreground mb-4">{currentLesson.description}</p>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <span>Duración: {currentLesson.duration}</span>
-                <span>•</span>
-                <span>{currentLesson.completed ? 'Completada' : 'En progreso'}</span>
+            {/* Current lesson info with handmade styling */}
+            <div className="relative bg-gradient-card rounded-3xl p-6 shadow-handmade border border-border/50 transform hover:shadow-float transition-organic">
+              {/* Decorative corner element */}
+              <div className="absolute top-4 right-4 w-3 h-3 bg-gradient-secondary rounded-full animate-handmade-pulse" />
+              
+              <h2 className="text-2xl font-bold mb-3 text-foreground">{currentLesson.title}</h2>
+              <p className="text-muted-foreground mb-4 leading-relaxed">{currentLesson.description}</p>
+              
+              <div className="flex items-center gap-6 text-sm">
+                <div className="flex items-center gap-2 text-primary">
+                  <Clock className="h-4 w-4" />
+                  <span className="font-medium">{currentLesson.duration}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className={cn(
+                    "w-3 h-3 rounded-full",
+                    currentLesson.completed ? "bg-accent animate-handmade-pulse" : "bg-coral animate-handmade-pulse"
+                  )} />
+                  <span className="font-medium text-foreground">
+                    {currentLesson.completed ? 'Completada' : 'En progreso'}
+                  </span>
+                </div>
               </div>
             </div>
             
-            {/* Lesson list - shown on mobile */}
-            <div className="xl:hidden">
+            {/* Lesson list - shown on mobile with handmade styling */}
+            <div className="xl:hidden bg-gradient-card rounded-3xl p-6 shadow-handmade border border-border/50">
               <LessonList
                 lessons={sampleLessons}
                 currentLessonId={currentLesson.id}
@@ -125,20 +146,20 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Sidebar */}
+          {/* Sidebar - NOW ON THE RIGHT */}
           <div className="xl:col-span-1 space-y-6">
-            {/* Lesson list - hidden on mobile */}
-            <div className="hidden xl:block">
+            {/* Chat interface - now prominently on the right */}
+            <div className="h-[calc(100vh-240px)] min-h-[600px]">
+              <ChatInterface onTimestampClick={handleTimestampClick} />
+            </div>
+            
+            {/* Lesson list - compact version for desktop, hidden on mobile */}
+            <div className="hidden xl:block bg-gradient-card rounded-3xl p-6 shadow-handmade border border-border/50">
               <LessonList
                 lessons={sampleLessons}
                 currentLessonId={currentLesson.id}
                 onLessonSelect={handleLessonSelect}
               />
-            </div>
-            
-            {/* Chat interface */}
-            <div className="h-[500px] xl:h-[600px]">
-              <ChatInterface onTimestampClick={handleTimestampClick} />
             </div>
           </div>
         </div>
