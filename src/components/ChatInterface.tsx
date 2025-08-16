@@ -20,7 +20,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
-      content: '¡Hola! 👋 Soy tu asistente de aprendizaje con IA. Tengo acceso a todas las transcripciones del curso y puedo llevarte a momentos específicos de los videos. ¿En qué puedo ayudarte hoy?',
+      content: 'Hola. Soy tu asistente de aprendizaje con IA. Tengo acceso a todas las transcripciones del curso y puedo llevarte a momentos específicos de los videos. ¿En qué puedo ayudarte?',
       sender: 'bot',
       timestamp: new Date(),
     }
@@ -55,7 +55,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
     setTimeout(() => {
       const botMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: `Excelente pregunta sobre "${inputValue}". 🎯 He encontrado información relevante en el curso. Te recomiendo revisar el momento 2:35 del video "Introducción a React" donde se explica exactamente este concepto con ejemplos prácticos. [📺 Ver momento específico](video:dQw4w9WgXcQ:155)
+        content: `He encontrado información relevante sobre "${inputValue}" en el curso. Te recomiendo revisar el momento 2:35 del video "Introducción a React" donde se explica este concepto con ejemplos prácticos. [Ver momento específico](video:dQw4w9WgXcQ:155)
 
 ¿Te gustaría que profundice en algún aspecto específico?`,
         sender: 'bot',
@@ -269,7 +269,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               className="text-xs bg-accent/5 hover:bg-accent/10 text-accent border border-accent/20 rounded-full px-sm py-xs transition-gentle"
               onClick={() => setInputValue("¿Qué es useState?")}
             >
-              🤔 ¿Qué es useState?
+              ¿Qué es useState?
             </Button>
             <Button
               variant="ghost"
@@ -277,7 +277,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               className="text-xs bg-teal/5 hover:bg-teal/10 text-teal border border-teal/20 rounded-full px-sm py-xs transition-gentle"
               onClick={() => setInputValue("Explícame los props")}
             >
-              💡 Props
+              Props
             </Button>
             <Button
               variant="ghost"
@@ -285,7 +285,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               className="text-xs bg-primary/5 hover:bg-primary/10 text-primary border border-primary/20 rounded-full px-sm py-xs transition-gentle"
               onClick={() => setInputValue("Quiero ver sobre hooks")}
             >
-              🔧 Hooks
+              Hooks
             </Button>
           </div>
         </div>

@@ -91,7 +91,6 @@ export default {
 					glow: 'hsl(var(--teal-glow))'
 				},
 				success: 'hsl(var(--success))',
-				warning: 'hsl(var(--warning))',
 				info: 'hsl(var(--info))',
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',

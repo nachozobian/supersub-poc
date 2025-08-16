@@ -57,13 +57,6 @@ export const CourseHeader = ({
                 <TrendingUp className="h-4 w-4 mr-sm" />
                 React & JavaScript
               </Badge>
-              <Badge 
-                variant="outline" 
-                className="border-success/30 text-success bg-success/5 hover:bg-success/10 transition-gentle rounded-full px-lg py-sm text-base font-medium interactive-hover focus-ring"
-              >
-                <Award className="h-4 w-4 mr-sm" />
-                Certificado Incluido
-              </Badge>
             </div>
             
             {/* Enhanced title with clear hierarchy */}
@@ -94,7 +87,7 @@ export const CourseHeader = ({
                 <div className="flex items-center gap-xs mt-xs">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-warning fill-current" />
+                      <Star key={i} className="h-4 w-4 text-primary fill-current" />
                     ))}
                   </div>
                   <span className="text-sm font-medium text-muted-foreground">(4.9/5 • 847 reseñas)</span>
@@ -138,8 +131,8 @@ export const CourseHeader = ({
               </div>
               
               <div className="bg-gradient-card p-lg rounded-3xl shadow-organic border border-border/50 hover:shadow-float transition-organic interactive-hover group">
-                <div className="flex items-center gap-sm text-warning mb-sm">
-                  <div className="p-sm bg-warning/10 rounded-xl group-hover:bg-warning/20 transition-gentle">
+                <div className="flex items-center gap-sm text-primary mb-sm">
+                  <div className="p-sm bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-gentle">
                     <Star className="h-5 w-5 fill-current" />
                   </div>
                   <span className="font-semibold text-base">Valoración</span>

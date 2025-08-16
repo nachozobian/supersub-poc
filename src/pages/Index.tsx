@@ -103,9 +103,9 @@ const Index = () => {
       
       {/* Enhanced main content with better spacing and layout */}
       <div className="max-w-7xl mx-auto px-xl pb-4xl">
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-2xl">
-          {/* Main content area with enhanced personality */}
-          <div className="xl:col-span-2 space-cozy">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2xl">
+          {/* Main content area */}
+          <div className="lg:col-span-2 space-cozy">
             {/* Enhanced video player with better visual hierarchy */}
             <div className="relative group animate-slide-up">
               <div className="aspect-video bg-gradient-card rounded-4xl shadow-hero overflow-hidden border border-border/50 transform hover:scale-[1.01] transition-organic">
@@ -175,7 +175,7 @@ const Index = () => {
             </div>
             
             {/* Enhanced lesson list for mobile with better spacing */}
-            <div className="xl:hidden bg-gradient-card rounded-4xl p-xl shadow-handmade border border-border/50 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <div className="lg:hidden bg-gradient-card rounded-4xl p-xl shadow-handmade border border-border/50 animate-slide-up" style={{ animationDelay: '0.2s' }}>
               <LessonList
                 lessons={sampleLessons}
                 currentLessonId={currentLesson.id}
@@ -184,15 +184,15 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Enhanced sidebar with chat prominence and better hierarchy */}
-          <div className="xl:col-span-1 space-cozy">
-            {/* Enhanced chat interface - the star of the sidebar */}
+          {/* Chat area - prominente a la derecha del video */}
+          <div className="lg:col-span-1 space-cozy">
+            {/* Chat interface principal */}
             <div className="h-[70vh] min-h-[600px] animate-slide-up">
               <ChatInterface onTimestampClick={handleTimestampClick} />
             </div>
             
-            {/* Enhanced compact lesson list for desktop */}
-            <div className="hidden xl:block bg-gradient-card rounded-4xl p-xl shadow-handmade border border-border/50 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+            {/* Lista de lecciones compacta para desktop */}
+            <div className="hidden lg:block bg-gradient-card rounded-4xl p-xl shadow-handmade border border-border/50 animate-slide-up" style={{ animationDelay: '0.1s' }}>
               <LessonList
                 lessons={sampleLessons}
                 currentLessonId={currentLesson.id}
