@@ -127,7 +127,7 @@ const Index = () => {
                 <div className="flex items-center gap-2">
                   <div className={cn(
                     "w-3 h-3 rounded-full",
-                    currentLesson.completed ? "bg-accent animate-handmade-pulse" : "bg-coral animate-handmade-pulse"
+                    currentLesson.completed ? "bg-accent animate-handmade-pulse" : "bg-purple animate-handmade-pulse"
                   )} />
                   <span className="font-medium text-foreground">
                     {currentLesson.completed ? 'Completada' : 'En progreso'}

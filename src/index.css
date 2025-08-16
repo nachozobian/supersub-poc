@@ -8,54 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Handmade-inspired color palette */
-    --background: 249 252 255;
-    --foreground: 17 24 39;
+    /* Modern professional palette inspired by premium brands */
+    --background: 250 252 255;
+    --foreground: 15 23 42;
 
     --card: 255 255 255;
-    --card-foreground: 17 24 39;
+    --card-foreground: 15 23 42;
 
     --popover: 255 255 255;
-    --popover-foreground: 17 24 39;
+    --popover-foreground: 15 23 42;
 
-    /* Creative primary - warm orange inspired by handmade aesthetics */
-    --primary: 24 83% 57%;
+    /* Primary - Deep sophisticated blue */
+    --primary: 224 76% 48%;
     --primary-foreground: 255 255 255;
-    --primary-glow: 24 100% 75%;
+    --primary-glow: 224 100% 85%;
 
-    /* Handmade secondary - soft cream */
-    --secondary: 45 25% 95%;
-    --secondary-foreground: 17 24 39;
+    /* Secondary - Elegant light gray */
+    --secondary: 240 9% 97%;
+    --secondary-foreground: 15 23 42;
 
-    --muted: 210 14% 97%;
-    --muted-foreground: 107 14% 46%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 100 7% 45%;
 
-    /* Creative accent - vibrant teal */
-    --accent: 168 85% 52%;
+    /* Accent - Sophisticated teal/turquoise */
+    --accent: 189 94% 43%;
     --accent-foreground: 255 255 255;
-    --accent-glow: 168 100% 75%;
+    --accent-glow: 189 100% 85%;
 
-    /* Warm coral for highlights */
-    --coral: 14 91% 66%;
-    --coral-glow: 14 100% 85%;
+    /* Neutral purple for highlights */
+    --purple: 262 52% 47%;
+    --purple-glow: 262 100% 85%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 255 255 255;
 
-    --border: 220 14% 91%;
-    --input: 220 14% 96%;
-    --ring: 24 83% 57%;
+    --border: 220 13% 91%;
+    --input: 220 13% 95%;
+    --ring: 224 76% 48%;
 
-    /* Handmade-style gradients */
-    --gradient-primary: linear-gradient(125deg, hsl(var(--primary)), hsl(var(--coral)));
-    --gradient-secondary: linear-gradient(155deg, hsl(var(--accent)), hsl(var(--primary-glow)));
-    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--primary-glow) / 0.1), hsl(var(--accent-glow) / 0.05) 50%, transparent 70%);
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(210 14% 99%));
+    /* Professional gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-secondary: linear-gradient(155deg, hsl(var(--accent)), hsl(var(--purple)));
+    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--primary-glow) / 0.05), hsl(var(--accent-glow) / 0.03) 50%, transparent 70%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(240 5% 99%));
 
-    /* Organic shadows with warmth */
-    --shadow-organic: 0 8px 32px hsl(var(--primary) / 0.12), 0 2px 8px hsl(var(--primary) / 0.08);
-    --shadow-float: 0 12px 48px -8px hsl(var(--coral) / 0.25);
-    --shadow-handmade: 2px 4px 12px hsl(var(--accent) / 0.15), -1px 2px 8px hsl(var(--primary) / 0.1);
+    /* Subtle professional shadows */
+    --shadow-organic: 0 8px 32px hsl(var(--primary) / 0.08), 0 2px 8px hsl(var(--primary) / 0.04);
+    --shadow-float: 0 12px 48px -8px hsl(var(--accent) / 0.15);
+    --shadow-handmade: 2px 4px 12px hsl(var(--primary) / 0.1), -1px 2px 8px hsl(var(--accent) / 0.05);
 
     /* Smooth organic transitions */
     --transition-organic: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -81,43 +81,50 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 240 10% 8%;
-    --foreground: 240 10% 95%;
+    --background: 8 16 33;
+    --foreground: 248 250 252;
 
-    --card: 240 10% 10%;
-    --card-foreground: 240 10% 95%;
+    --card: 15 23 42;
+    --card-foreground: 248 250 252;
 
-    --popover: 240 10% 10%;
-    --popover-foreground: 240 10% 95%;
+    --popover: 15 23 42;
+    --popover-foreground: 248 250 252;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 221 100% 75%;
+    --primary: 224 76% 58%;
+    --primary-foreground: 255 255 255;
+    --primary-glow: 224 100% 75%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 240 10% 95%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 248 250 252;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
 
-    --accent: 262 83% 58%;
-    --accent-foreground: 0 0% 100%;
-    --accent-glow: 262 100% 75%;
+    --accent: 189 94% 53%;
+    --accent-foreground: 255 255 255;
+    --accent-glow: 189 100% 75%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
+    --purple: 262 52% 57%;
+    --purple-glow: 262 100% 75%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 221 83% 53%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 255 255 255;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 224 76% 58%;
+
+    /* Dark mode gradients */
+    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--primary-glow) / 0.03), hsl(var(--accent-glow) / 0.02) 50%, transparent 70%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(240 4% 18%));
+    --sidebar-background: 240 5% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 224 76% 58%;
   }
 }
 
