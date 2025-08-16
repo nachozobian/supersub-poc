@@ -20,7 +20,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
-      content: 'Hola. Soy tu asistente de aprendizaje con IA. Tengo acceso a todas las transcripciones del curso y puedo llevarte a momentos específicos de los videos. ¿En qué puedo ayudarte?',
+      content: 'Hello! I\'m your AI learning assistant. I have access to all course transcripts and can take you to specific moments in the videos. How can I help you?',
       sender: 'bot',
       timestamp: new Date(),
     }
@@ -55,9 +55,9 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
     setTimeout(() => {
       const botMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: `He encontrado información relevante sobre "${inputValue}" en el curso. Te recomiendo revisar el momento 2:35 del video "Introducción a React" donde se explica este concepto con ejemplos prácticos. [Ver momento específico](video:dQw4w9WgXcQ:155)
+        content: `I found relevant information about "${inputValue}" in the course. I recommend checking the moment 2:35 in the video "Introduction to React" where this concept is explained with practical examples. [View specific moment](video:dQw4w9WgXcQ:155)
 
-¿Te gustaría que profundice en algún aspecto específico?`,
+Would you like me to go deeper into any specific aspect?`,
         sender: 'bot',
         timestamp: new Date(),
       };
@@ -120,9 +120,9 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
           <div className="p-md rounded-3xl bg-white/20 backdrop-blur-sm shadow-handmade interactive-hover">
             <Brain className="h-8 w-8 text-white" />
           </div>
-          <div className="flex-1 space-tight">
-            <h3 className="text-xl font-heading text-white font-bold">Asistente Inteligente</h3>
-            <p className="text-white/90 text-base">Powered by RAG Technology</p>
+          <div className="flex-1 space-y-1">
+            <h3 className="text-lg font-semibold text-white">AI Assistant</h3>
+            <p className="text-white/90 text-sm">Powered by RAG Technology</p>
           </div>
           <div className="flex gap-sm">
             <Badge 
@@ -130,24 +130,23 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               className="bg-white/20 text-white border-white/30 rounded-full backdrop-blur-sm text-sm font-medium px-md py-xs"
             >
               <Zap className="h-4 w-4 mr-xs" />
-              Activo
+              Active
             </Badge>
           </div>
         </div>
         
-        {/* Enhanced feature highlights */}
-        <div className="mt-lg grid grid-cols-3 gap-sm">
-          <div className="text-center space-tight">
-            <div className="text-white/90 text-xs font-medium">Transcripciones</div>
-            <div className="text-white text-sm font-bold">Completas</div>
+        <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
+          <div className="text-center">
+            <div className="text-white/90 font-medium">Transcripts</div>
+            <div className="text-white text-sm font-bold">Complete</div>
           </div>
-          <div className="text-center space-tight">
-            <div className="text-white/90 text-xs font-medium">Respuestas</div>
-            <div className="text-white text-sm font-bold">Instantáneas</div>
+          <div className="text-center">
+            <div className="text-white/90 font-medium">Responses</div>
+            <div className="text-white text-sm font-bold">Instant</div>
           </div>
-          <div className="text-center space-tight">
-            <div className="text-white/90 text-xs font-medium">Navegación</div>
-            <div className="text-white text-sm font-bold">Inteligente</div>
+          <div className="text-center">
+            <div className="text-white/90 font-medium">Navigation</div>
+            <div className="text-white text-sm font-bold">Smart</div>
           </div>
         </div>
       </div>
@@ -228,7 +227,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               <div className="bg-gradient-card border border-border/50 rounded-4xl px-lg py-lg shadow-organic">
                 <div className="flex items-center gap-sm text-muted-foreground">
                   <MessageCircle className="h-4 w-4 animate-subtle-pulse" />
-                  <span className="text-base font-medium">Analizando tu pregunta</span>
+                  <span className="text-sm font-medium">Analyzing your question</span>
                   <div className="flex space-x-1 ml-sm">
                     <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
                     <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
@@ -248,7 +247,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Pregunta sobre el curso, conceptos, o pide ir a un momento específico..."
+              placeholder="Ask about the course, concepts, or request to go to a specific moment..."
               className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-base placeholder:text-muted-foreground font-medium py-lg px-lg rounded-2xl"
               disabled={isLoading}
             />
@@ -267,15 +266,15 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               variant="ghost"
               size="sm"
               className="text-xs bg-accent/5 hover:bg-accent/10 text-accent border border-accent/20 rounded-full px-sm py-xs transition-gentle"
-              onClick={() => setInputValue("¿Qué es useState?")}
+              onClick={() => setInputValue("What is useState?")}
             >
-              ¿Qué es useState?
+              What is useState?
             </Button>
             <Button
               variant="ghost"
               size="sm"
               className="text-xs bg-teal/5 hover:bg-teal/10 text-teal border border-teal/20 rounded-full px-sm py-xs transition-gentle"
-              onClick={() => setInputValue("Explícame los props")}
+              onClick={() => setInputValue("Explain props to me")}
             >
               Props
             </Button>
@@ -283,7 +282,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
               variant="ghost"
               size="sm"
               className="text-xs bg-primary/5 hover:bg-primary/10 text-primary border border-primary/20 rounded-full px-sm py-xs transition-gentle"
-              onClick={() => setInputValue("Quiero ver sobre hooks")}
+              onClick={() => setInputValue("I want to see about hooks")}
             >
               Hooks
             </Button>

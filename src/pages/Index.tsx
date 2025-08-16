@@ -6,64 +6,64 @@ import { CourseHeader } from '@/components/CourseHeader';
 import { Clock, PlayCircle, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Enhanced course data with more personality
+// Simple course data
 const courseData = {
-  title: "Desarrollo Frontend Moderno con React",
-  instructor: "María González",
+  title: "Modern Frontend Development with React",
+  instructor: "Maria Gonzalez",
   totalDuration: "12h 30min",
   rating: 4.8,
   enrolledStudents: 2847,
 };
 
-// Enhanced lesson data with better descriptions and personality
+// Simple lesson data
 const sampleLessons: Lesson[] = [
   {
     id: '1',
-    title: 'Fundamentos de React: Tu primer componente',
+    title: 'React Fundamentals: Your First Component',
     duration: '15:30',
     videoId: 'dQw4w9WgXcQ',
     completed: true,
-    description: 'Aprende los conceptos básicos de React, cómo crear componentes y entender JSX desde cero'
+    description: 'Learn the basics of React, how to create components and understand JSX from scratch'
   },
   {
     id: '2',
-    title: 'Estado y Props: La comunicación en React',
+    title: 'State and Props: Communication in React',
     duration: '22:15',
     videoId: 'dQw4w9WgXcQ',
     completed: true,
-    description: 'Domina el manejo del estado de componentes y la comunicación entre ellos usando props'
+    description: 'Master component state management and communication between them using props'
   },
   {
     id: '3',
-    title: 'Hooks de React: useState y useEffect en profundidad',
+    title: 'React Hooks: useState and useEffect in Depth',
     duration: '28:45',
     videoId: 'dQw4w9WgXcQ',
     completed: false,
-    description: 'Descubre el poder de los hooks más importantes de React y cómo revolucionan el desarrollo'
+    description: 'Discover the power of the most important React hooks and how they revolutionize development'
   },
   {
     id: '4',
-    title: 'Enrutamiento con React Router: Navegación moderna',
+    title: 'Routing with React Router: Modern Navigation',
     duration: '18:20',
     videoId: 'dQw4w9WgXcQ',
     completed: false,
-    description: 'Crea aplicaciones de múltiples páginas con navegación fluida y profesional'
+    description: 'Create multi-page applications with smooth and professional navigation'
   },
   {
     id: '5',
-    title: 'Context API: Gestión de estado global simplificada',
+    title: 'Context API: Simplified Global State Management',
     duration: '25:40',
     videoId: 'dQw4w9WgXcQ',
     completed: false,
-    description: 'Maneja el estado compartido entre componentes sin complicaciones usando Context API'
+    description: 'Manage shared state between components without complications using Context API'
   },
   {
     id: '6',
-    title: 'Optimización y Performance: React en producción',
+    title: 'Optimization and Performance: React in Production',
     duration: '31:15',
     videoId: 'dQw4w9WgXcQ',
     completed: false,
-    description: 'Técnicas avanzadas para optimizar tu aplicación React y mejorar la experiencia del usuario'
+    description: 'Advanced techniques to optimize your React application and improve user experience'
   },
 ];
 
@@ -93,106 +93,70 @@ const Index = () => {
   const completedLessons = sampleLessons.filter(l => l.completed).length;
 
   return (
-    <div className="min-h-screen bg-gradient-background">
-      {/* Enhanced course header with better hierarchy */}
-      <CourseHeader
-        {...courseData}
-        totalLessons={sampleLessons.length}
-        completedLessons={completedLessons}
-      />
-      
-      {/* Enhanced main content with better spacing and layout */}
-      <div className="max-w-7xl mx-auto px-xl pb-4xl">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2xl">
-          {/* Main content area */}
-          <div className="lg:col-span-2 space-cozy">
-            {/* Enhanced video player with better visual hierarchy */}
-            <div className="relative group animate-slide-up">
-              <div className="aspect-video bg-gradient-card rounded-4xl shadow-hero overflow-hidden border border-border/50 transform hover:scale-[1.01] transition-organic">
-                <YouTubePlayer
-                  key={`${currentLesson.videoId}-${startTime}`}
-                  videoId={currentLesson.videoId}
-                  startTime={startTime}
-                />
-              </div>
-              
-              {/* Enhanced decorative elements with personality */}
-              <div className="absolute -top-sm -right-sm w-8 h-8 bg-gradient-primary rounded-2xl animate-subtle-pulse opacity-80 shadow-handmade" />
-              <div className="absolute -bottom-lg -left-lg w-6 h-6 bg-accent/60 rounded-[60%_40%_70%_30%] animate-gentle-float" />
-              <div className="absolute top-1/2 -right-xs w-4 h-4 bg-teal/40 rounded-full animate-gentle-float" style={{ animationDelay: '2s' }} />
-            </div>
-            
-            {/* Enhanced current lesson info with clear hierarchy */}
-            <div className="relative bg-gradient-card rounded-4xl p-2xl shadow-handmade border border-border/50 transform hover:shadow-float transition-organic animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              {/* Decorative corner element with personality */}
-              <div className="absolute top-lg right-lg w-4 h-4 bg-gradient-secondary rounded-full animate-subtle-pulse" />
-              
-              <div className="space-cozy">
-                {/* Enhanced lesson metadata */}
-                <div className="flex items-center gap-md mb-lg">
-                  <div className="flex items-center gap-sm">
-                    <div className="p-sm bg-primary/10 rounded-xl">
-                      <PlayCircle className="h-5 w-5 text-primary" />
-                    </div>
-                    <span className="text-sm font-semibold text-primary">Lección Actual</span>
-                  </div>
-                  <div className="flex items-center gap-sm text-muted-foreground">
-                    <Clock className="h-4 w-4" />
-                    <span className="text-sm font-medium">{currentLesson.duration}</span>
-                  </div>
-                </div>
-                
-                {/* Enhanced title with better typography */}
-                <h2 className="text-heading font-heading text-foreground mb-md leading-tight">
-                  {currentLesson.title}
-                </h2>
-                
-                {/* Enhanced description with better readability */}
-                <p className="text-body-large text-muted-foreground mb-lg leading-relaxed">
-                  {currentLesson.description}
-                </p>
-                
-                {/* Enhanced status indicators with personality */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-md">
-                    <div className="flex items-center gap-sm">
-                      <div className={cn(
-                        "w-4 h-4 rounded-full shadow-handmade",
-                        currentLesson.completed ? "bg-success animate-subtle-pulse" : "bg-teal animate-subtle-pulse"
-                      )} />
-                      <span className="font-semibold text-foreground text-base">
-                        {currentLesson.completed ? 'Completada' : 'En progreso'}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-sm text-sm text-muted-foreground">
-                    <BookOpen className="h-4 w-4" />
-                    <span>Lección {sampleLessons.findIndex(l => l.id === currentLesson.id) + 1} de {sampleLessons.length}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Enhanced lesson list for mobile with better spacing */}
-            <div className="lg:hidden bg-gradient-card rounded-4xl p-xl shadow-handmade border border-border/50 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <LessonList
-                lessons={sampleLessons}
-                currentLessonId={currentLesson.id}
-                onLessonSelect={handleLessonSelect}
+    <div className="min-h-screen bg-background">
+      {/* Simple main content */}
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Video area */}
+          <div className="lg:col-span-2 space-y-4">
+            {/* Video player */}
+            <div className="aspect-video bg-card rounded-xl shadow-sm overflow-hidden border border-border">
+              <YouTubePlayer
+                key={`${currentLesson.videoId}-${startTime}`}
+                videoId={currentLesson.videoId}
+                startTime={startTime}
               />
+            </div>
+            
+            {/* Current lesson info */}
+            <div className="bg-card rounded-xl p-6 shadow-sm border border-border">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <PlayCircle className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-sm font-semibold text-primary">Current Lesson</span>
+                <div className="flex items-center gap-2 text-muted-foreground ml-auto">
+                  <Clock className="h-4 w-4" />
+                  <span className="text-sm font-medium">{currentLesson.duration}</span>
+                </div>
+              </div>
+              
+              <h2 className="text-xl font-semibold text-foreground mb-2">
+                {currentLesson.title}
+              </h2>
+              
+              <p className="text-muted-foreground leading-relaxed">
+                {currentLesson.description}
+              </p>
+              
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex items-center gap-2">
+                  <div className={cn(
+                    "w-3 h-3 rounded-full",
+                    currentLesson.completed ? "bg-green-500" : "bg-blue-500"
+                  )} />
+                  <span className="text-sm font-medium text-foreground">
+                    {currentLesson.completed ? 'Completed' : 'In Progress'}
+                  </span>
+                </div>
+                
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <BookOpen className="h-4 w-4" />
+                  <span>Lesson {sampleLessons.findIndex(l => l.id === currentLesson.id) + 1} of {sampleLessons.length}</span>
+                </div>
+              </div>
             </div>
           </div>
           
-          {/* Chat area - prominente a la derecha del video */}
-          <div className="lg:col-span-1 space-cozy">
-            {/* Chat interface principal */}
-            <div className="h-[70vh] min-h-[600px] animate-slide-up">
+          {/* Chat area - right of video */}
+          <div className="lg:col-span-1 space-y-4">
+            {/* Chat interface */}
+            <div className="h-[70vh] min-h-[600px]">
               <ChatInterface onTimestampClick={handleTimestampClick} />
             </div>
             
-            {/* Lista de lecciones compacta para desktop */}
-            <div className="hidden lg:block bg-gradient-card rounded-4xl p-xl shadow-handmade border border-border/50 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+            {/* Lesson list */}
+            <div className="bg-card rounded-xl p-4 shadow-sm border border-border">
               <LessonList
                 lessons={sampleLessons}
                 currentLessonId={currentLesson.id}
