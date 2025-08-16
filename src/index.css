@@ -8,54 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Modern professional palette inspired by premium brands */
-    --background: 250 252 255;
-    --foreground: 15 23 42;
+    /* Supersub-inspired palette */
+    --background: 250 248 246;
+    --foreground: 45 74 82;
 
     --card: 255 255 255;
-    --card-foreground: 15 23 42;
+    --card-foreground: 45 74 82;
 
     --popover: 255 255 255;
-    --popover-foreground: 15 23 42;
+    --popover-foreground: 45 74 82;
 
-    /* Primary - Deep sophisticated blue */
-    --primary: 224 76% 48%;
+    /* Primary - Supersub dark navy/teal */
+    --primary: 196 64% 29%;
     --primary-foreground: 255 255 255;
-    --primary-glow: 224 100% 85%;
+    --primary-glow: 196 100% 85%;
 
-    /* Secondary - Elegant light gray */
-    --secondary: 240 9% 97%;
-    --secondary-foreground: 15 23 42;
+    /* Secondary - Supersub cream/beige */
+    --secondary: 25 20% 95%;
+    --secondary-foreground: 45 74 82;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 100 7% 45%;
+    --muted: 20 14% 96%;
+    --muted-foreground: 185 10% 45%;
 
-    /* Accent - Sophisticated teal/turquoise */
-    --accent: 189 94% 43%;
+    /* Accent - Supersub signature turquoise */
+    --accent: 176 68% 64%;
     --accent-foreground: 255 255 255;
-    --accent-glow: 189 100% 85%;
+    --accent-glow: 176 100% 85%;
 
-    /* Neutral purple for highlights */
-    --purple: 262 52% 47%;
-    --purple-glow: 262 100% 85%;
+    /* Supporting teal variation */
+    --teal: 180 84% 47%;
+    --teal-glow: 180 100% 85%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 255 255 255;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 95%;
-    --ring: 224 76% 48%;
+    --border: 20 12% 89%;
+    --input: 20 12% 93%;
+    --ring: 176 68% 64%;
 
-    /* Professional gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    --gradient-secondary: linear-gradient(155deg, hsl(var(--accent)), hsl(var(--purple)));
-    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--primary-glow) / 0.05), hsl(var(--accent-glow) / 0.03) 50%, transparent 70%);
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(240 5% 99%));
+    /* Supersub-style gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--teal)));
+    --gradient-secondary: linear-gradient(155deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--accent-glow) / 0.08), hsl(var(--teal-glow) / 0.04) 50%, transparent 70%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(20 12% 98%));
 
-    /* Subtle professional shadows */
-    --shadow-organic: 0 8px 32px hsl(var(--primary) / 0.08), 0 2px 8px hsl(var(--primary) / 0.04);
-    --shadow-float: 0 12px 48px -8px hsl(var(--accent) / 0.15);
-    --shadow-handmade: 2px 4px 12px hsl(var(--primary) / 0.1), -1px 2px 8px hsl(var(--accent) / 0.05);
+    /* Supersub organic shadows */
+    --shadow-organic: 0 8px 32px hsl(var(--primary) / 0.1), 0 2px 8px hsl(var(--accent) / 0.05);
+    --shadow-float: 0 12px 48px -8px hsl(var(--accent) / 0.2);
+    --shadow-handmade: 2px 4px 12px hsl(var(--teal) / 0.12), -1px 2px 8px hsl(var(--primary) / 0.08);
 
     /* Smooth organic transitions */
     --transition-organic: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -81,42 +81,42 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 8 16 33;
-    --foreground: 248 250 252;
+    --background: 45 74 82;
+    --foreground: 250 248 246;
 
-    --card: 15 23 42;
-    --card-foreground: 248 250 252;
+    --card: 52 78 84;
+    --card-foreground: 250 248 246;
 
-    --popover: 15 23 42;
-    --popover-foreground: 248 250 252;
+    --popover: 52 78 84;
+    --popover-foreground: 250 248 246;
 
-    --primary: 224 76% 58%;
-    --primary-foreground: 255 255 255;
-    --primary-glow: 224 100% 75%;
+    --primary: 176 68% 74%;
+    --primary-foreground: 45 74 82;
+    --primary-glow: 176 100% 85%;
 
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 248 250 252;
+    --secondary: 40 60% 18%;
+    --secondary-foreground: 250 248 246;
 
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 40 60% 18%;
+    --muted-foreground: 185 15% 65%;
 
-    --accent: 189 94% 53%;
+    --accent: 176 68% 64%;
     --accent-foreground: 255 255 255;
-    --accent-glow: 189 100% 75%;
+    --accent-glow: 176 100% 75%;
 
-    --purple: 262 52% 57%;
-    --purple-glow: 262 100% 75%;
+    --teal: 180 84% 57%;
+    --teal-glow: 180 100% 75%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 255 255 255;
 
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 224 76% 58%;
+    --border: 40 55% 22%;
+    --input: 40 55% 22%;
+    --ring: 176 68% 64%;
 
     /* Dark mode gradients */
-    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--primary-glow) / 0.03), hsl(var(--accent-glow) / 0.02) 50%, transparent 70%);
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(240 4% 18%));
+    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--accent-glow) / 0.05), hsl(var(--teal-glow) / 0.03) 50%, transparent 70%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(40 55% 20%));
     --sidebar-background: 240 5% 10%;
     --sidebar-foreground: 240 5% 96%;
     --sidebar-primary: 224 76% 48%;

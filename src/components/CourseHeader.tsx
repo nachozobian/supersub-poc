@@ -28,9 +28,9 @@ export const CourseHeader = ({
     <div className="relative overflow-hidden">
       {/* Background with organic shapes */}
       <div className="absolute inset-0 bg-gradient-background">
-        <div className="absolute top-10 left-20 w-32 h-32 bg-primary/3 rounded-[60%_40%_70%_30%] animate-float" />
-        <div className="absolute top-32 right-16 w-24 h-24 bg-accent/5 rounded-[40%_60%_30%_70%] animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 left-1/3 w-20 h-20 bg-purple/4 rounded-[70%_30%_40%_60%] animate-float" style={{ animationDelay: '4s' }} />
+        <div className="absolute top-10 left-20 w-32 h-32 bg-accent/8 rounded-[60%_40%_70%_30%] animate-float" />
+        <div className="absolute top-32 right-16 w-24 h-24 bg-teal/6 rounded-[40%_60%_30%_70%] animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-20 left-1/3 w-20 h-20 bg-primary/5 rounded-[70%_30%_40%_60%] animate-float" style={{ animationDelay: '4s' }} />
       </div>
       
       <div className="relative max-w-7xl mx-auto p-8">
@@ -85,7 +85,7 @@ export const CourseHeader = ({
               </div>
               
               <div className="bg-gradient-card p-4 rounded-2xl shadow-organic border border-border/50 hover:shadow-float transition-organic">
-                <div className="flex items-center gap-2 text-accent mb-1">
+                <div className="flex items-center gap-2 text-teal mb-1">
                   <BookOpen className="h-4 w-4" />
                   <span className="font-medium">Lecciones</span>
                 </div>
@@ -93,7 +93,7 @@ export const CourseHeader = ({
               </div>
               
               <div className="bg-gradient-card p-4 rounded-2xl shadow-organic border border-border/50 hover:shadow-float transition-organic">
-                <div className="flex items-center gap-2 text-purple mb-1">
+                <div className="flex items-center gap-2 text-primary mb-1">
                   <Users className="h-4 w-4" />
                   <span className="font-medium">Estudiantes</span>
                 </div>

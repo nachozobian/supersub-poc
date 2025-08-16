@@ -207,7 +207,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
                 <div className="flex space-x-2">
                   <div className="w-3 h-3 bg-primary rounded-full animate-bounce" />
                   <div className="w-3 h-3 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                  <div className="w-3 h-3 bg-purple rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                  <div className="w-3 h-3 bg-teal rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                 </div>
               </div>
             </div>

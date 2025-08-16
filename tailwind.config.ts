@@ -61,9 +61,9 @@ export default {
 					foreground: 'hsl(var(--accent-foreground))',
 					glow: 'hsl(var(--accent-glow))'
 				},
-				purple: {
-					DEFAULT: 'hsl(var(--purple))',
-					glow: 'hsl(var(--purple-glow))'
+				teal: {
+					DEFAULT: 'hsl(var(--teal))',
+					glow: 'hsl(var(--teal-glow))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
