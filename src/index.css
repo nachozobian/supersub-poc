@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Supersub-inspired palette */
+    /* Supersub-inspired palette with enhanced personality */
     --background: 250 248 246;
     --foreground: 45 74 82;
 
@@ -18,19 +18,19 @@ All colors MUST be HSL.
     --popover: 255 255 255;
     --popover-foreground: 45 74 82;
 
-    /* Primary - Supersub dark navy/teal */
+    /* Primary - Supersub dark navy/teal with more character */
     --primary: 196 64% 29%;
     --primary-foreground: 255 255 255;
     --primary-glow: 196 100% 85%;
 
-    /* Secondary - Supersub cream/beige */
+    /* Secondary - Supersub cream/beige with warmth */
     --secondary: 25 20% 95%;
     --secondary-foreground: 45 74 82;
 
     --muted: 20 14% 96%;
     --muted-foreground: 185 10% 45%;
 
-    /* Accent - Supersub signature turquoise */
+    /* Accent - Supersub signature turquoise with vibrancy */
     --accent: 176 68% 64%;
     --accent-foreground: 255 255 255;
     --accent-glow: 176 100% 85%;
@@ -39,6 +39,11 @@ All colors MUST be HSL.
     --teal: 180 84% 47%;
     --teal-glow: 180 100% 85%;
 
+    /* Enhanced interaction colors */
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --info: 199 89% 48%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 255 255 255;
 
@@ -46,20 +51,49 @@ All colors MUST be HSL.
     --input: 20 12% 93%;
     --ring: 176 68% 64%;
 
-    /* Supersub-style gradients */
+    /* Enhanced typography system */
+    --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+
+    /* Typography scale with clear hierarchy */
+    --text-xs: 0.75rem;     /* 12px */
+    --text-sm: 0.875rem;    /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-lg: 1.125rem;    /* 18px */
+    --text-xl: 1.25rem;     /* 20px */
+    --text-2xl: 1.5rem;     /* 24px */
+    --text-3xl: 1.875rem;   /* 30px */
+    --text-4xl: 2.25rem;    /* 36px */
+    --text-5xl: 3rem;       /* 48px */
+
+    /* Enhanced spacing system for breathing room */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
+    --spacing-3xl: 4rem;     /* 64px */
+    --spacing-4xl: 6rem;     /* 96px */
+
+    /* Supersub-style gradients with more personality */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--teal)));
     --gradient-secondary: linear-gradient(155deg, hsl(var(--accent)), hsl(var(--accent-glow)));
-    --gradient-background: radial-gradient(ellipse at top right, hsl(var(--accent-glow) / 0.08), hsl(var(--teal-glow) / 0.04) 50%, transparent 70%);
+    --gradient-hero: linear-gradient(125deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(var(--teal)) 100%);
+    --gradient-background: radial-gradient(ellipse 800px 600px at top right, hsl(var(--accent-glow) / 0.12), hsl(var(--teal-glow) / 0.08) 50%, transparent 70%);
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(20 12% 98%));
 
-    /* Supersub organic shadows */
-    --shadow-organic: 0 8px 32px hsl(var(--primary) / 0.1), 0 2px 8px hsl(var(--accent) / 0.05);
-    --shadow-float: 0 12px 48px -8px hsl(var(--accent) / 0.2);
-    --shadow-handmade: 2px 4px 12px hsl(var(--teal) / 0.12), -1px 2px 8px hsl(var(--primary) / 0.08);
+    /* Enhanced organic shadows with character */
+    --shadow-organic: 0 8px 32px hsl(var(--primary) / 0.12), 0 2px 8px hsl(var(--accent) / 0.08);
+    --shadow-float: 0 20px 60px -12px hsl(var(--accent) / 0.25);
+    --shadow-handmade: 3px 6px 16px hsl(var(--teal) / 0.15), -2px 3px 12px hsl(var(--primary) / 0.1);
+    --shadow-hero: 0 32px 80px -12px hsl(var(--primary) / 0.3);
 
-    /* Smooth organic transitions */
+    /* Smooth organic transitions with personality */
     --transition-organic: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-gentle: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 1.25rem;
 
@@ -125,15 +159,106 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 5% 96%;
     --sidebar-border: 240 4% 16%;
     --sidebar-ring: 224 76% 58%;
-  }
 }
 
+/* Enhanced typography system with clear hierarchy */
 @layer base {
-  * {
-    @apply border-border;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  h1 { 
+    font-size: var(--text-5xl); 
+    margin-bottom: var(--spacing-lg);
+    color: hsl(var(--foreground));
+  }
+  
+  h2 { 
+    font-size: var(--text-4xl); 
+    margin-bottom: var(--spacing-md);
+    color: hsl(var(--foreground));
+  }
+  
+  h3 { 
+    font-size: var(--text-2xl); 
+    margin-bottom: var(--spacing-md);
+    color: hsl(var(--foreground));
+  }
+
+  p {
+    font-family: var(--font-body);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+    color: hsl(var(--muted-foreground));
+  }
+
+  .text-hero {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-body-large {
+    font-size: var(--text-lg);
+    line-height: 1.6;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+}
+
+/* Enhanced spacing utilities for breathing room */
+@layer utilities {
+  .space-organic > * + * {
+    margin-top: var(--spacing-lg);
+  }
+
+  .space-cozy > * + * {
+    margin-top: var(--spacing-md);
+  }
+
+  .space-tight > * + * {
+    margin-top: var(--spacing-sm);
+  }
+
+  /* Enhanced interactive elements */
+  .interactive-hover {
+    transition: var(--transition-gentle);
+  }
+
+  .interactive-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-float);
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
+  }
+
+  /* Personality-rich animations */
+  .animate-gentle-float {
+    animation: gentle-float 8s ease-in-out infinite;
+  }
+
+  .animate-subtle-pulse {
+    animation: subtle-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-8px) rotate(1deg); }
+    66% { transform: translateY(-4px) rotate(-0.5deg); }
+  }
+
+  @keyframes subtle-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.95; }
   }
 }
