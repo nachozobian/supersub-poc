@@ -25,91 +25,91 @@ const sampleLessons: Lesson[] = [
   },
   {
     id: '2',
-    title: 'The Value of a Project Manager',
-    duration: '18:30',
-    videoId: 'rck3MnC7OXA',
+    title: 'Become a Project Manager Without a College Degree',
+    duration: '8:30',
+    videoId: 'DgPYRU50V7E',
     completed: true,
-    description: 'Explore the impact and value that project managers bring to organizations and teams'
+    description: 'Discover career paths in project management regardless of educational background'
   },
   {
     id: '3',
-    title: 'Project Life Cycle and Methodologies',
-    duration: '22:15',
-    videoId: 'rck3MnC7OXA',
+    title: 'Introduction to Agile Methodologies',
+    duration: '15:45',
+    videoId: 'BaH04m_fS1c',
     completed: false,
-    description: 'Understanding different project management approaches: Waterfall, Agile, and hybrid methodologies'
+    description: 'Learn about Agile methodologies including Scrum, Kanban, XP, and Lean approaches'
   },
   {
     id: '4',
-    title: 'Organizational Structure and Culture',
-    duration: '16:20',
-    videoId: 'rck3MnC7OXA',
+    title: 'Key Foundations of Agile & Scrum Project Management',
+    duration: '22:30',
+    videoId: 'WDAQq5vCMME',
     completed: false,
-    description: 'How organizational structure impacts project management and team dynamics'
+    description: 'Deep dive into Agile principles, values, and Scrum framework essentials'
   },
   {
     id: '5',
-    title: 'Project Initiation: Defining Goals',
-    duration: '24:10',
-    videoId: 'rck3MnC7OXA',
+    title: 'Agile Management',
+    duration: '35:20',
+    videoId: 'km7n3DI5IWk',
     completed: false,
-    description: 'Setting clear project goals, defining scope, and creating project charters'
+    description: 'Comprehensive guide to Agile project management and delivery frameworks'
   },
   {
     id: '6',
-    title: 'Stakeholder Analysis and Management',
-    duration: '19:35',
-    videoId: 'rck3MnC7OXA',
+    title: 'Project Tracking Methods and Examples',
+    duration: '28:15',
+    videoId: 'oLh8akA7F3I',
     completed: false,
-    description: 'Identifying stakeholders, understanding their needs, and managing expectations'
+    description: 'Learn various methods to track project progress, risks, and dependencies'
   },
   {
     id: '7',
-    title: 'Project Planning: Creating the Roadmap',
-    duration: '21:50',
-    videoId: 'rck3MnC7OXA',
+    title: 'How to Find Project Management Jobs',
+    duration: '12:40',
+    videoId: 'pjkGhNVuMHQ',
     completed: false,
-    description: 'Developing comprehensive project plans, timelines, and resource allocation'
+    description: 'Strategies for finding and landing project management roles in various industries'
   },
   {
     id: '8',
-    title: 'Budget Management and Cost Control',
-    duration: '17:25',
-    videoId: 'rck3MnC7OXA',
+    title: 'Project Management Full Course - Part 1',
+    duration: '45:25',
+    videoId: 'eZDkSNHaWh8',
     completed: false,
-    description: 'Creating budgets, tracking expenses, and managing project costs effectively'
+    description: 'Comprehensive overview covering the first three courses of the specialization'
   },
   {
     id: '9',
-    title: 'Risk Management Strategies',
-    duration: '15:40',
-    videoId: 'rck3MnC7OXA',
+    title: 'Complete Google Project Management Certificate Overview',
+    duration: '18:35',
+    videoId: 'DRe_5cHooeo',
     completed: false,
-    description: 'Identifying, assessing, and mitigating project risks throughout the lifecycle'
+    description: 'Overview of the complete certificate program including new AI modules'
   },
   {
     id: '10',
-    title: 'Team Dynamics and Leadership',
-    duration: '26:15',
-    videoId: 'rck3MnC7OXA',
+    title: 'Complete Course in 2 HOURS',
+    duration: '120:00',
+    videoId: 'SJcHiiNpUds',
     completed: false,
-    description: 'Building effective teams, managing conflicts, and leading project teams'
+    description: 'Condensed version of the entire Google Project Management Certificate course'
   },
   {
     id: '11',
-    title: 'Communication and Documentation',
+    title: 'Project Planning and Goal Setting',
     duration: '20:30',
     videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Effective communication strategies and maintaining proper project documentation'
+    description: 'Master the art of setting SMART goals and creating comprehensive project plans'
   },
   {
     id: '12',
-    title: 'Project Closure and Lessons Learned',
-    duration: '14:55',
+    title: 'Advanced Project Management Techniques',
+    duration: '25:55',
     videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Successfully closing projects and capturing valuable insights for future projects'
+    description: 'Advanced strategies for complex project management scenarios'
   },
 ];
 
