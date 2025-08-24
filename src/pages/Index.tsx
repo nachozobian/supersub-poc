@@ -9,62 +9,110 @@ import { cn } from '@/lib/utils';
 
 // Simple course data
 const courseData = {
-  title: "Modern Frontend Development with React",
-  instructor: "Maria Gonzalez",
-  totalDuration: "12h 30min",
-  rating: 4.8,
-  enrolledStudents: 2847,
+  title: "Google Project Management Certificate",
+  instructor: "Google Career Certificates",
+  totalDuration: "18h 45min",
+  rating: 4.9,
+  enrolledStudents: 125847,
 };
 
 // Simple lesson data
 const sampleLessons: Lesson[] = [
   {
     id: '1',
-    title: 'React Fundamentals: Your First Component',
-    duration: '15:30',
-    videoId: 'dQw4w9WgXcQ',
+    title: 'Introduction to Project Management',
+    duration: '12:45',
+    videoId: 'rck3MnC7OXA',
     completed: true,
-    description: 'Learn the basics of React, how to create components and understand JSX from scratch'
+    description: 'Learn the fundamentals of project management and understand the role of a project manager'
   },
   {
     id: '2',
-    title: 'State and Props: Communication in React',
-    duration: '22:15',
-    videoId: 'dQw4w9WgXcQ',
+    title: 'Project Life Cycle and Methodologies',
+    duration: '18:30',
+    videoId: 'rck3MnC7OXA',
     completed: true,
-    description: 'Master component state management and communication between them using props'
+    description: 'Explore different project management methodologies including Waterfall and Agile'
   },
   {
     id: '3',
-    title: 'React Hooks: useState and useEffect in Depth',
-    duration: '28:45',
-    videoId: 'dQw4w9WgXcQ',
+    title: 'Project Planning and Goal Setting',
+    duration: '22:15',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Discover the power of the most important React hooks and how they revolutionize development'
+    description: 'Master the art of setting SMART goals and creating comprehensive project plans'
   },
   {
     id: '4',
-    title: 'Routing with React Router: Modern Navigation',
-    duration: '18:20',
-    videoId: 'dQw4w9WgXcQ',
+    title: 'Risk Management and Mitigation',
+    duration: '16:20',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Create multi-page applications with smooth and professional navigation'
+    description: 'Identify, assess, and develop strategies to manage project risks effectively'
   },
   {
     id: '5',
-    title: 'Context API: Simplified Global State Management',
-    duration: '25:40',
-    videoId: 'dQw4w9WgXcQ',
+    title: 'Team Management and Communication',
+    duration: '24:10',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Manage shared state between components without complications using Context API'
+    description: 'Build and lead high-performing teams with effective communication strategies'
   },
   {
     id: '6',
-    title: 'Optimization and Performance: React in Production',
-    duration: '31:15',
-    videoId: 'dQw4w9WgXcQ',
+    title: 'Project Scheduling and Time Management',
+    duration: '19:35',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Advanced techniques to optimize your React application and improve user experience'
+    description: 'Create realistic project schedules and manage time effectively across all phases'
+  },
+  {
+    id: '7',
+    title: 'Budget Management and Resource Allocation',
+    duration: '21:50',
+    videoId: 'rck3MnC7OXA',
+    completed: false,
+    description: 'Learn to create and manage project budgets and allocate resources efficiently'
+  },
+  {
+    id: '8',
+    title: 'Quality Management and Control',
+    duration: '17:25',
+    videoId: 'rck3MnC7OXA',
+    completed: false,
+    description: 'Implement quality assurance processes and control measures for project success'
+  },
+  {
+    id: '9',
+    title: 'Stakeholder Management',
+    duration: '15:40',
+    videoId: 'rck3MnC7OXA',
+    completed: false,
+    description: 'Identify, engage, and manage stakeholders throughout the project lifecycle'
+  },
+  {
+    id: '10',
+    title: 'Agile Project Management',
+    duration: '26:15',
+    videoId: 'rck3MnC7OXA',
+    completed: false,
+    description: 'Deep dive into Agile methodologies, Scrum, and iterative project management'
+  },
+  {
+    id: '11',
+    title: 'Project Monitoring and Performance',
+    duration: '20:30',
+    videoId: 'rck3MnC7OXA',
+    completed: false,
+    description: 'Track project progress, measure performance, and implement corrective actions'
+  },
+  {
+    id: '12',
+    title: 'Project Closure and Lessons Learned',
+    duration: '14:55',
+    videoId: 'rck3MnC7OXA',
+    completed: false,
+    description: 'Successfully close projects and capture valuable lessons for future initiatives'
   },
 ];
 
