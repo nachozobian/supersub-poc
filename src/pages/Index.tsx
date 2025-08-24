@@ -13,13 +13,14 @@ const courseData = {
   enrolledStudents: 125847,
 };
 
-// Simple lesson data - Updated with real YouTube video titles
+// Simple lesson data - Updated with real YouTube video titles and URLs
 const sampleLessons: Lesson[] = [
   {
     id: '1',
     title: 'Intro to Project Management',
     duration: '15:30',
     videoId: 'ZKOWOZBvAzl',
+    videoUrl: 'https://www.youtube.com/watch?v=ZKOWOZBvAzl',
     completed: false,
     description: 'Primera lección del curso con transcripción disponible'
   },
@@ -28,6 +29,7 @@ const sampleLessons: Lesson[] = [
     title: 'Professional Project Management Skills',
     duration: '18:45',
     videoId: 'y7LDaaFeNn4',
+    videoUrl: 'https://www.youtube.com/watch?v=y7LDaaFeNn4',
     completed: false,
     description: 'Professional Project Management Skills'
   },
@@ -36,6 +38,7 @@ const sampleLessons: Lesson[] = [
     title: 'Project Structures & Life Cycles',
     duration: '22:15',
     videoId: 'rck3MnC7OXA',
+    videoUrl: 'https://www.youtube.com/watch?v=rck3MnC7OXA',
     completed: false,
     description: 'Project Structures & Life Cycles'
   },
@@ -44,6 +47,7 @@ const sampleLessons: Lesson[] = [
     title: 'Finding Project Manager Jobs',
     duration: '19:20',
     videoId: 'kXkVV7PFWgE',
+    videoUrl: 'https://www.youtube.com/watch?v=kXkVV7PFWgE',
     completed: false,
     description: 'Finding Project Manager Jobs'
   },
@@ -52,6 +56,7 @@ const sampleLessons: Lesson[] = [
     title: 'How Company Culture Affects Project Management',
     duration: '25:10',
     videoId: 'KH-qoTqtMXE',
+    videoUrl: 'https://www.youtube.com/watch?v=KH-qoTqtMXE',
     completed: false,
     description: 'How Company Culture Affects Project Management'
   },
@@ -60,6 +65,7 @@ const sampleLessons: Lesson[] = [
     title: 'How to Run a Successful Meeting',
     duration: '16:35',
     videoId: 'jz7tPVDwb50',
+    videoUrl: 'https://www.youtube.com/watch?v=jz7tPVDwb50',
     completed: false,
     description: 'How to Run a Successful Meeting'
   },
@@ -68,6 +74,7 @@ const sampleLessons: Lesson[] = [
     title: 'Communicate Effectively as a Project Manager',
     duration: '21:45',
     videoId: 'f0VcIWJNDAI',
+    videoUrl: 'https://www.youtube.com/watch?v=f0VcIWJNDAI',
     completed: false,
     description: 'Communicate Effectively as a Project Manager'
   },
@@ -76,6 +83,7 @@ const sampleLessons: Lesson[] = [
     title: 'Key Parts of Project Initiation',
     duration: '28:30',
     videoId: 'bQ1fWZBRILo',
+    videoUrl: 'https://www.youtube.com/watch?v=bQ1fWZBRILo',
     completed: false,
     description: 'Key Parts of Project Initiation'
   },
@@ -84,6 +92,7 @@ const sampleLessons: Lesson[] = [
     title: 'Communicating and Working with Stakeholders',
     duration: '17:55',
     videoId: '28vZa0qOHkg',
+    videoUrl: 'https://www.youtube.com/watch?v=28vZa0qOHkg',
     completed: false,
     description: 'Communicating and Working with Stakeholders'
   },
@@ -92,6 +101,7 @@ const sampleLessons: Lesson[] = [
     title: 'How to Set SMART Goals and Get Results',
     duration: '24:20',
     videoId: '8unOyycCpFs',
+    videoUrl: 'https://www.youtube.com/watch?v=8unOyycCpFs',
     completed: false,
     description: 'How to Set SMART Goals and Get Results'
   },
@@ -100,6 +110,7 @@ const sampleLessons: Lesson[] = [
     title: 'The Best Resources and Tools to Manage Your Project',
     duration: '20:15',
     videoId: '1eiTXSkKFtE',
+    videoUrl: 'https://www.youtube.com/watch?v=1eiTXSkKFtE',
     completed: false,
     description: 'Undécima lección del curso con transcripción disponible'
   },
@@ -108,6 +119,7 @@ const sampleLessons: Lesson[] = [
     title: 'Risk Management Basics',
     duration: '26:40',
     videoId: '_mxovBWI9mO',
+    videoUrl: 'https://www.youtube.com/watch?v=_mxovBWI9mO',
     completed: false,
     description: 'Risk Management Basics'
   },
@@ -118,11 +130,15 @@ const Index = () => {
   const [startTime, setStartTime] = useState(0);
 
   // Debug: Log current lesson info
+  console.log('=== DEBUG INFO ===');
   console.log('Current lesson:', {
     id: currentLesson.id,
     title: currentLesson.title,
-    videoId: currentLesson.videoId
+    videoId: currentLesson.videoId,
+    videoUrl: currentLesson.videoUrl
   });
+  console.log('All available lessons:', sampleLessons.map(l => ({ id: l.id, videoId: l.videoId, title: l.title })));
+  console.log('==================');
 
   const handleLessonSelect = (lesson: Lesson) => {
     console.log('Selecting lesson:', {
@@ -160,6 +176,7 @@ const Index = () => {
             <YouTubePlayer
               key={currentLesson.videoId}
               videoId={currentLesson.videoId}
+              videoUrl={currentLesson.videoUrl}
               startTime={startTime}
             />
           </div>

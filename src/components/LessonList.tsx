@@ -8,6 +8,7 @@ export interface Lesson {
   title: string;
   duration: string;
   videoId: string;
+  videoUrl?: string;
   completed: boolean;
   description?: string;
 }
