@@ -143,7 +143,7 @@ const Index = () => {
       {/* Main Content */}
       <div className="h-screen grid grid-cols-1 lg:grid-cols-12 gap-0">
         {/* Video area - enhanced */}
-        <div className="lg:col-span-7 p-6">
+        <div className="lg:col-span-5 p-4">
           <div className="h-full bg-black rounded-xl overflow-hidden shadow-2xl">
             <YouTubePlayer
               key={`${currentLesson.videoId}-${startTime}`}
@@ -171,7 +171,7 @@ const Index = () => {
         </div>
         
         {/* Lesson List Sidebar - enhanced */}
-        <div className="lg:col-span-2 bg-card border-r">
+        <div className="lg:col-span-3 bg-card border-r">
           <div className="p-4 border-b bg-muted/50">
             <h3 className="font-semibold text-foreground">Contenido del Curso</h3>
             <p className="text-xs text-muted-foreground mt-1">
@@ -194,7 +194,7 @@ const Index = () => {
         </div>
 
         {/* Integrated Chat Sidebar - enhanced */}
-        <div className="lg:col-span-3 bg-card border-l">
+        <div className="lg:col-span-4 bg-card border-l">
           <div className="p-4 border-b bg-muted/50">
             <h3 className="font-semibold text-foreground">Asistente IA</h3>
             <p className="text-xs text-muted-foreground mt-1">
