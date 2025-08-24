@@ -114,10 +114,22 @@ const sampleLessons: Lesson[] = [
 ];
 
 const Index = () => {
-  const [currentLesson, setCurrentLesson] = useState<Lesson>(sampleLessons[2]);
+  const [currentLesson, setCurrentLesson] = useState<Lesson>(sampleLessons[0]);
   const [startTime, setStartTime] = useState(0);
 
+  // Debug: Log current lesson info
+  console.log('Current lesson:', {
+    id: currentLesson.id,
+    title: currentLesson.title,
+    videoId: currentLesson.videoId
+  });
+
   const handleLessonSelect = (lesson: Lesson) => {
+    console.log('Selecting lesson:', {
+      id: lesson.id,
+      title: lesson.title,
+      videoId: lesson.videoId
+    });
     setCurrentLesson(lesson);
     setStartTime(0);
   };
