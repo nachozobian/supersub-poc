@@ -25,91 +25,91 @@ const sampleLessons: Lesson[] = [
   },
   {
     id: '2',
-    title: 'Project Life Cycle and Methodologies',
+    title: 'The Value of a Project Manager',
     duration: '18:30',
-    videoId: 'ZKOL-rZ79gs',
+    videoId: 'rck3MnC7OXA',
     completed: true,
-    description: 'Explore different project management methodologies including Waterfall and Agile'
+    description: 'Explore the impact and value that project managers bring to organizations and teams'
   },
   {
     id: '3',
-    title: 'Project Planning and Goal Setting',
+    title: 'Project Life Cycle and Methodologies',
     duration: '22:15',
-    videoId: '7ldiVDhp3J4',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Master the art of setting SMART goals and creating comprehensive project plans'
+    description: 'Understanding different project management approaches: Waterfall, Agile, and hybrid methodologies'
   },
   {
     id: '4',
-    title: 'Risk Management and Mitigation',
+    title: 'Organizational Structure and Culture',
     duration: '16:20',
-    videoId: 'UvEiSa6_EPA',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Identify, assess, and develop strategies to manage project risks effectively'
+    description: 'How organizational structure impacts project management and team dynamics'
   },
   {
     id: '5',
-    title: 'Team Management and Communication',
+    title: 'Project Initiation: Defining Goals',
     duration: '24:10',
-    videoId: 'SWY7mIkL6_c',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Build and lead high-performing teams with effective communication strategies'
+    description: 'Setting clear project goals, defining scope, and creating project charters'
   },
   {
     id: '6',
-    title: 'Project Scheduling and Time Management',
+    title: 'Stakeholder Analysis and Management',
     duration: '19:35',
-    videoId: 'p6WmKFXzkMk',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Create realistic project schedules and manage time effectively across all phases'
+    description: 'Identifying stakeholders, understanding their needs, and managing expectations'
   },
   {
     id: '7',
-    title: 'Budget Management and Resource Allocation',
+    title: 'Project Planning: Creating the Roadmap',
     duration: '21:50',
-    videoId: 'MsSfmb9mFiw',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Learn to create and manage project budgets and allocate resources efficiently'
+    description: 'Developing comprehensive project plans, timelines, and resource allocation'
   },
   {
     id: '8',
-    title: 'Quality Management and Control',
+    title: 'Budget Management and Cost Control',
     duration: '17:25',
-    videoId: 'FRr6wfP40dA',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Implement quality assurance processes and control measures for project success'
+    description: 'Creating budgets, tracking expenses, and managing project costs effectively'
   },
   {
     id: '9',
-    title: 'Stakeholder Management',
+    title: 'Risk Management Strategies',
     duration: '15:40',
-    videoId: 'XjJQBjWYDTs',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Identify, engage, and manage stakeholders throughout the project lifecycle'
+    description: 'Identifying, assessing, and mitigating project risks throughout the lifecycle'
   },
   {
     id: '10',
-    title: 'Agile Project Management',
+    title: 'Team Dynamics and Leadership',
     duration: '26:15',
-    videoId: 'Z9QbYZh1YXY',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Deep dive into Agile methodologies, Scrum, and iterative project management'
+    description: 'Building effective teams, managing conflicts, and leading project teams'
   },
   {
     id: '11',
-    title: 'Project Monitoring and Performance',
+    title: 'Communication and Documentation',
     duration: '20:30',
-    videoId: 'VtRH85ms5W0',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Track project progress, measure performance, and implement corrective actions'
+    description: 'Effective communication strategies and maintaining proper project documentation'
   },
   {
     id: '12',
     title: 'Project Closure and Lessons Learned',
     duration: '14:55',
-    videoId: 'QJNZX3P_1U4',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Successfully close projects and capture valuable lessons for future initiatives'
+    description: 'Successfully closing projects and capturing valuable insights for future projects'
   },
 ];
 
