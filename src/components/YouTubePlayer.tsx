@@ -16,6 +16,7 @@ declare global {
 export const YouTubePlayer = ({ videoId, startTime = 0, onReady }: YouTubePlayerProps) => {
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const currentVideoIdRef = useRef<string>(videoId);
 
   useEffect(() => {
     // Load YouTube IFrame API
@@ -32,6 +33,17 @@ export const YouTubePlayer = ({ videoId, startTime = 0, onReady }: YouTubePlayer
 
     function initializePlayer() {
       if (containerRef.current && window.YT?.Player) {
+        // Destroy existing player if it exists
+        if (playerRef.current?.destroy) {
+          playerRef.current.destroy();
+        }
+        
+        // Clear the container
+        if (containerRef.current) {
+          containerRef.current.innerHTML = '';
+        }
+        
+        // Create new player
         playerRef.current = new window.YT.Player(containerRef.current, {
           height: '100%',
           width: '100%',
@@ -49,6 +61,8 @@ export const YouTubePlayer = ({ videoId, startTime = 0, onReady }: YouTubePlayer
             },
           },
         });
+        
+        currentVideoIdRef.current = videoId;
       }
     }
 
@@ -58,6 +72,20 @@ export const YouTubePlayer = ({ videoId, startTime = 0, onReady }: YouTubePlayer
       }
     };
   }, [videoId, startTime, onReady]);
+
+  // Handle videoId changes
+  useEffect(() => {
+    if (currentVideoIdRef.current !== videoId && playerRef.current) {
+      // If videoId changed and player exists, load new video
+      if (playerRef.current.loadVideoById) {
+        playerRef.current.loadVideoById({
+          videoId: videoId,
+          startSeconds: startTime
+        });
+        currentVideoIdRef.current = videoId;
+      }
+    }
+  }, [videoId, startTime]);
 
   const seekTo = (seconds: number) => {
     if (playerRef.current?.seekTo) {
