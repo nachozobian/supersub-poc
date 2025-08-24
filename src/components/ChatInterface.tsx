@@ -81,7 +81,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
         console.log('Webhook response:', data); // Para debugging
         
         // Buscar la respuesta en diferentes campos posibles del nodo Respond
-        let responseContent = data.output || data.response || data.message || data.chatInput || data.text || data.content;
+        let responseContent = data.output || data.response || data.message || data.chatInput || data.text || data.content || data.answer;
         
         // Si no encontramos un campo específico, usar toda la respuesta como string
         if (!responseContent && typeof data === 'string') {
