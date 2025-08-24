@@ -139,12 +139,12 @@ const Index = () => {
   const completedLessons = sampleLessons.filter(lesson => lesson.completed).length;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background flex flex-col">
       {/* Main Content */}
-      <div className="h-screen grid grid-cols-1 lg:grid-cols-12 gap-0">
-        {/* Video area - enhanced */}
-        <div className="lg:col-span-5 p-4">
-          <div className="h-full bg-black rounded-xl overflow-hidden shadow-2xl">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-10 gap-1">
+        {/* Video area */}
+        <div className="lg:col-span-6 p-4 flex flex-col">
+          <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
             <YouTubePlayer
               key={`${currentLesson.videoId}-${startTime}`}
               videoId={currentLesson.videoId}
@@ -154,7 +154,7 @@ const Index = () => {
           
           {/* Current Lesson Info */}
           <div className="mt-4 p-4 bg-card rounded-lg border">
-            <h2 className="text-xl font-semibold text-foreground mb-2">
+            <h2 className="text-lg font-semibold text-foreground mb-2">
               {currentLesson.title}
             </h2>
             <p className="text-muted-foreground text-sm mb-3">
@@ -170,21 +170,21 @@ const Index = () => {
           </div>
         </div>
         
-        {/* Lesson List Sidebar - enhanced */}
-        <div className="lg:col-span-3 bg-card border-r">
-          <div className="p-4 border-b bg-muted/50">
-            <h3 className="font-semibold text-foreground">Contenido del Curso</h3>
+        {/* Lesson List Sidebar */}
+        <div className="lg:col-span-2 bg-card border-r flex flex-col">
+          <div className="p-3 border-b bg-muted/50">
+            <h3 className="font-semibold text-sm text-foreground">Contenido del Curso</h3>
             <p className="text-xs text-muted-foreground mt-1">
               {completedLessons} de {sampleLessons.length} lecciones completadas
             </p>
-            <div className="w-full bg-muted rounded-full h-2 mt-2">
+            <div className="w-full bg-muted rounded-full h-1.5 mt-2">
               <div 
-                className="bg-green-500 h-2 rounded-full transition-all"
+                className="bg-green-500 h-1.5 rounded-full transition-all"
                 style={{ width: `${(completedLessons / sampleLessons.length) * 100}%` }}
               ></div>
             </div>
           </div>
-          <div className="h-full overflow-y-auto p-2">
+          <div className="flex-1 overflow-y-auto p-2">
             <LessonList
               lessons={sampleLessons}
               currentLessonId={currentLesson.id}
@@ -193,15 +193,15 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Integrated Chat Sidebar - enhanced */}
-        <div className="lg:col-span-4 bg-card border-l">
-          <div className="p-4 border-b bg-muted/50">
-            <h3 className="font-semibold text-foreground">Asistente IA</h3>
+        {/* Chat Sidebar */}
+        <div className="lg:col-span-2 bg-card border-l flex flex-col">
+          <div className="p-3 border-b bg-muted/50">
+            <h3 className="font-semibold text-sm text-foreground">Asistente IA</h3>
             <p className="text-xs text-muted-foreground mt-1">
               Tu tutor personal para dudas y explicaciones
             </p>
           </div>
-          <div className="h-full">
+          <div className="flex-1 min-h-0">
             <ChatInterface onTimestampClick={handleTimestampClick} />
           </div>
         </div>
