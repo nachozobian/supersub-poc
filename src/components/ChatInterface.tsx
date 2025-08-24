@@ -78,9 +78,26 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log('Webhook response:', data); // Para debugging
+        
+        // Buscar la respuesta en diferentes campos posibles del nodo Respond
+        let responseContent = data.output || data.response || data.message || data.chatInput || data.text || data.content;
+        
+        // Si no encontramos un campo específico, usar toda la respuesta como string
+        if (!responseContent && typeof data === 'string') {
+          responseContent = data;
+        } else if (!responseContent && typeof data === 'object') {
+          responseContent = JSON.stringify(data, null, 2);
+        }
+        
+        // Si aún no hay contenido, mostrar un mensaje de error
+        if (!responseContent) {
+          responseContent = 'Error: No se recibió respuesta del servidor';
+        }
+        
         const botMessage: ChatMessage = {
           id: (Date.now() + 1).toString(),
-          content: data.response || data.message || data.chatInput || 'I received your message and processed it successfully.',
+          content: responseContent,
           sender: 'bot',
           timestamp: new Date(),
         };
