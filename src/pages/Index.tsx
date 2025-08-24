@@ -140,23 +140,23 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Video area - expanded */}
-          <div className="lg:col-span-4">
-            <div className="aspect-video bg-black rounded-lg overflow-hidden">
-              <YouTubePlayer
-                key={`${currentLesson.videoId}-${startTime}`}
-                videoId={currentLesson.videoId}
-                startTime={startTime}
-              />
-            </div>
+    <div className="min-h-screen bg-background">
+      <div className="h-screen grid grid-cols-1 lg:grid-cols-12 gap-0">
+        {/* Video area - takes up most space */}
+        <div className="lg:col-span-7 p-4">
+          <div className="h-full bg-black rounded-lg overflow-hidden">
+            <YouTubePlayer
+              key={`${currentLesson.videoId}-${startTime}`}
+              videoId={currentLesson.videoId}
+              startTime={startTime}
+            />
           </div>
-          
-          {/* Compact Sidebar */}
-          <div className="bg-card rounded-lg p-4 border">
-            <h3 className="font-semibold mb-4 text-sm">Videos</h3>
+        </div>
+        
+        {/* Lesson List Sidebar */}
+        <div className="lg:col-span-2 bg-card border-r p-4">
+          <h3 className="font-semibold mb-4 text-sm">Videos</h3>
+          <div className="h-full overflow-y-auto">
             <LessonList
               lessons={sampleLessons}
               currentLessonId={currentLesson.id}
@@ -164,22 +164,12 @@ const Index = () => {
             />
           </div>
         </div>
-      </div>
 
-      {/* Floating Chat Button */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button
-            size="lg"
-            className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <MessageCircle className="h-6 w-6" />
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-2xl w-full h-[600px] p-0">
+        {/* Integrated Chat Sidebar */}
+        <div className="lg:col-span-3 bg-card border-l">
           <ChatInterface onTimestampClick={handleTimestampClick} />
-        </DialogContent>
-      </Dialog>
+        </div>
+      </div>
     </div>
   );
 };
