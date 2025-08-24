@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { YouTubePlayer } from '@/components/YouTubePlayer';
 import { LessonList, type Lesson } from '@/components/LessonList';
 import { ChatInterface } from '@/components/ChatInterface';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { MessageCircle } from 'lucide-react';
+import { CourseHeader } from '@/components/CourseHeader';
 import { cn } from '@/lib/utils';
 
 // Simple course data
@@ -139,24 +137,66 @@ const Index = () => {
     }
   };
 
+  const completedLessons = sampleLessons.filter(lesson => lesson.completed).length;
+
   return (
     <div className="min-h-screen bg-background">
-      <div className="h-screen grid grid-cols-1 lg:grid-cols-12 gap-0">
-        {/* Video area - takes up most space */}
-        <div className="lg:col-span-7 p-4">
-          <div className="h-full bg-black rounded-lg overflow-hidden">
+      {/* Course Header */}
+      <CourseHeader
+        title={courseData.title}
+        instructor={courseData.instructor}
+        totalLessons={sampleLessons.length}
+        completedLessons={completedLessons}
+        totalDuration={courseData.totalDuration}
+        rating={courseData.rating}
+        enrolledStudents={courseData.enrolledStudents}
+      />
+      
+      {/* Main Content */}
+      <div className="h-[calc(100vh-300px)] grid grid-cols-1 lg:grid-cols-12 gap-0">
+        {/* Video area - enhanced */}
+        <div className="lg:col-span-7 p-6">
+          <div className="h-full bg-black rounded-xl overflow-hidden shadow-2xl">
             <YouTubePlayer
               key={`${currentLesson.videoId}-${startTime}`}
               videoId={currentLesson.videoId}
               startTime={startTime}
             />
           </div>
+          
+          {/* Current Lesson Info */}
+          <div className="mt-4 p-4 bg-card rounded-lg border">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              {currentLesson.title}
+            </h2>
+            <p className="text-muted-foreground text-sm mb-3">
+              {currentLesson.description}
+            </p>
+            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                Duración: {currentLesson.duration}
+              </span>
+              <span>Lección {currentLesson.id} de {sampleLessons.length}</span>
+            </div>
+          </div>
         </div>
         
-        {/* Lesson List Sidebar */}
-        <div className="lg:col-span-2 bg-card border-r p-4">
-          <h3 className="font-semibold mb-4 text-sm">Videos</h3>
-          <div className="h-full overflow-y-auto">
+        {/* Lesson List Sidebar - enhanced */}
+        <div className="lg:col-span-2 bg-card border-r">
+          <div className="p-4 border-b bg-muted/50">
+            <h3 className="font-semibold text-foreground">Contenido del Curso</h3>
+            <p className="text-xs text-muted-foreground mt-1">
+              {completedLessons} de {sampleLessons.length} lecciones completadas
+            </p>
+            <div className="w-full bg-muted rounded-full h-2 mt-2">
+              <div 
+                className="bg-green-500 h-2 rounded-full transition-all"
+                style={{ width: `${(completedLessons / sampleLessons.length) * 100}%` }}
+              ></div>
+            </div>
+          </div>
+          <div className="h-full overflow-y-auto p-2">
             <LessonList
               lessons={sampleLessons}
               currentLessonId={currentLesson.id}
@@ -165,9 +205,17 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Integrated Chat Sidebar */}
+        {/* Integrated Chat Sidebar - enhanced */}
         <div className="lg:col-span-3 bg-card border-l">
-          <ChatInterface onTimestampClick={handleTimestampClick} />
+          <div className="p-4 border-b bg-muted/50">
+            <h3 className="font-semibold text-foreground">Asistente IA</h3>
+            <p className="text-xs text-muted-foreground mt-1">
+              Tu tutor personal para dudas y explicaciones
+            </p>
+          </div>
+          <div className="h-full">
+            <ChatInterface onTimestampClick={handleTimestampClick} />
+          </div>
         </div>
       </div>
     </div>
