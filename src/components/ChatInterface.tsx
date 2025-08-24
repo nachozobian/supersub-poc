@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Send, Bot, User, ExternalLink, MessageCircle, Zap, Brain } from "lucide-react";
+import { Send, Bot, User, ExternalLink, MessageCircle, Zap, Brain, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 interface ChatMessage {
   id: string;
@@ -27,7 +28,10 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [webhookUrl, setWebhookUrl] = useState('');
+  const [showSettings, setShowSettings] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -40,6 +44,16 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
+    if (!webhookUrl && !showSettings) {
+      toast({
+        title: "n8n Webhook Required",
+        description: "Please configure your n8n webhook URL in settings",
+        variant: "destructive",
+      });
+      setShowSettings(true);
+      return;
+    }
+
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       content: inputValue,
@@ -48,22 +62,59 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = inputValue;
     setInputValue('');
     setIsLoading(true);
 
-    // Simulate bot response with enhanced personality
-    setTimeout(() => {
-      const botMessage: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        content: `I found relevant information about "${inputValue}" in the course. I recommend checking the moment 2:35 in the video "Introduction to React" where this concept is explained with practical examples. [View specific moment](video:dQw4w9WgXcQ:155)
+    try {
+      if (webhookUrl) {
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: currentInput,
+            timestamp: new Date().toISOString(),
+            context: {
+              source: 'course-chat',
+              userAgent: navigator.userAgent,
+            }
+          }),
+        });
 
-Would you like me to go deeper into any specific aspect?`,
+        if (response.ok) {
+          const data = await response.json();
+          const botMessage: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            content: data.response || data.message || 'I received your message and processed it successfully.',
+            sender: 'bot',
+            timestamp: new Date(),
+          };
+          setMessages(prev => [...prev, botMessage]);
+        } else {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+      }
+    } catch (error) {
+      console.error('Error sending message to n8n:', error);
+      
+      const errorMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        content: 'Sorry, I encountered an error connecting to the chat service. Please check your n8n webhook configuration.',
         sender: 'bot',
         timestamp: new Date(),
       };
-      setMessages(prev => [...prev, botMessage]);
+      setMessages(prev => [...prev, errorMessage]);
+
+      toast({
+        title: "Connection Error",
+        description: "Failed to connect to n8n webhook. Please check your configuration.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -110,9 +161,43 @@ Would you like me to go deeper into any specific aspect?`,
   return (
     <div className="h-full flex flex-col bg-card rounded-lg border overflow-hidden">
       {/* Header */}
-      <div className="p-3 bg-primary border-b">
+      <div className="p-3 bg-primary border-b flex justify-between items-center">
         <h3 className="text-sm font-semibold text-white">Chat</h3>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowSettings(!showSettings)}
+          className="text-white hover:bg-white/10 h-6 w-6 p-0"
+        >
+          <Settings className="h-3 w-3" />
+        </Button>
       </div>
+
+      {/* Settings Panel */}
+      {showSettings && (
+        <div className="p-3 bg-muted border-b">
+          <div className="space-y-2">
+            <label className="text-xs font-medium text-muted-foreground">n8n Webhook URL</label>
+            <Input
+              value={webhookUrl}
+              onChange={(e) => setWebhookUrl(e.target.value)}
+              placeholder="https://your-n8n-instance.com/webhook/your-webhook-id"
+              className="text-xs"
+            />
+            <p className="text-xs text-muted-foreground">
+              Enter your n8n webhook URL from your chat workflow trigger
+            </p>
+            <Button
+              onClick={() => setShowSettings(false)}
+              size="sm"
+              variant="outline"
+              className="w-full"
+            >
+              Save Configuration
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Messages */}
       <div className="flex-1 flex flex-col p-3">
