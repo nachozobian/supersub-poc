@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { YouTubePlayer } from '@/components/YouTubePlayer';
 import { LessonList, type Lesson } from '@/components/LessonList';
 import { ChatInterface } from '@/components/ChatInterface';
-import { CourseHeader } from '@/components/CourseHeader';
 import { cn } from '@/lib/utils';
 
 // Simple course data
@@ -141,19 +140,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Course Header */}
-      <CourseHeader
-        title={courseData.title}
-        instructor={courseData.instructor}
-        totalLessons={sampleLessons.length}
-        completedLessons={completedLessons}
-        totalDuration={courseData.totalDuration}
-        rating={courseData.rating}
-        enrolledStudents={courseData.enrolledStudents}
-      />
-      
       {/* Main Content */}
-      <div className="h-[calc(100vh-300px)] grid grid-cols-1 lg:grid-cols-12 gap-0">
+      <div className="h-screen grid grid-cols-1 lg:grid-cols-12 gap-0">
         {/* Video area - enhanced */}
         <div className="lg:col-span-7 p-6">
           <div className="h-full bg-black rounded-xl overflow-hidden shadow-2xl">
