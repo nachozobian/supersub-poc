@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface YouTubePlayerProps {
   videoId: string;
@@ -16,76 +16,74 @@ declare global {
 export const YouTubePlayer = ({ videoId, startTime = 0, onReady }: YouTubePlayerProps) => {
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const currentVideoIdRef = useRef<string>(videoId);
+  const [isApiLoaded, setIsApiLoaded] = useState(false);
+  const [currentVideoId, setCurrentVideoId] = useState(videoId);
 
+  // Load YouTube API
   useEffect(() => {
-    // Load YouTube IFrame API
     if (!window.YT) {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       const firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
 
-      window.onYouTubeIframeAPIReady = initializePlayer;
+      window.onYouTubeIframeAPIReady = () => {
+        setIsApiLoaded(true);
+      };
     } else {
-      initializePlayer();
+      setIsApiLoaded(true);
+    }
+  }, []);
+
+  // Initialize player when API is loaded
+  useEffect(() => {
+    if (!isApiLoaded || !containerRef.current) return;
+
+    // Destroy existing player
+    if (playerRef.current?.destroy) {
+      playerRef.current.destroy();
     }
 
-    function initializePlayer() {
-      if (containerRef.current && window.YT?.Player) {
-        // Destroy existing player if it exists
-        if (playerRef.current?.destroy) {
-          playerRef.current.destroy();
+    // Clear container
+    containerRef.current.innerHTML = '';
+
+    // Create new player
+    playerRef.current = new window.YT.Player(containerRef.current, {
+      height: '100%',
+      width: '100%',
+      videoId: currentVideoId,
+      playerVars: {
+        start: startTime,
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 1,
+        rel: 0,
+      },
+      events: {
+        onReady: () => {
+          console.log('YouTube player ready for video:', currentVideoId);
+          onReady?.();
+        },
+        onError: (event: any) => {
+          console.error('YouTube player error:', event);
         }
-        
-        // Clear the container
-        if (containerRef.current) {
-          containerRef.current.innerHTML = '';
-        }
-        
-        // Create new player
-        playerRef.current = new window.YT.Player(containerRef.current, {
-          height: '100%',
-          width: '100%',
-          videoId,
-          playerVars: {
-            start: startTime,
-            autoplay: 0,
-            controls: 1,
-            modestbranding: 1,
-            rel: 0,
-          },
-          events: {
-            onReady: () => {
-              onReady?.();
-            },
-          },
-        });
-        
-        currentVideoIdRef.current = videoId;
-      }
-    }
+      },
+    });
 
     return () => {
       if (playerRef.current?.destroy) {
         playerRef.current.destroy();
       }
     };
-  }, [videoId, startTime, onReady]);
+  }, [isApiLoaded, currentVideoId, startTime, onReady]);
 
   // Handle videoId changes
   useEffect(() => {
-    if (currentVideoIdRef.current !== videoId && playerRef.current) {
-      // If videoId changed and player exists, load new video
-      if (playerRef.current.loadVideoById) {
-        playerRef.current.loadVideoById({
-          videoId: videoId,
-          startSeconds: startTime
-        });
-        currentVideoIdRef.current = videoId;
-      }
+    if (videoId !== currentVideoId) {
+      console.log('Changing video from', currentVideoId, 'to', videoId);
+      setCurrentVideoId(videoId);
     }
-  }, [videoId, startTime]);
+  }, [videoId, currentVideoId]);
 
   const seekTo = (seconds: number) => {
     if (playerRef.current?.seekTo) {
@@ -103,6 +101,11 @@ export const YouTubePlayer = ({ videoId, startTime = 0, onReady }: YouTubePlayer
   return (
     <div className="w-full h-full bg-muted rounded-lg overflow-hidden">
       <div ref={containerRef} className="w-full h-full" />
+      {!isApiLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
+          Loading YouTube Player...
+        </div>
+      )}
     </div>
   );
 };

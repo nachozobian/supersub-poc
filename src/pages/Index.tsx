@@ -146,7 +146,7 @@ const Index = () => {
         <div className="lg:col-span-6 p-4 flex flex-col">
           <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
             <YouTubePlayer
-              key={`${currentLesson.videoId}-${startTime}`}
+              key={currentLesson.videoId}
               videoId={currentLesson.videoId}
               startTime={startTime}
             />
