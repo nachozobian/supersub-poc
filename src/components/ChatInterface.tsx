@@ -17,6 +17,11 @@ interface ChatInterfaceProps {
   onTimestampClick?: (videoId: string, timestamp: number) => void;
 }
 
+// Función para generar un sessionId único
+const generateSessionId = (): string => {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+};
+
 export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -28,10 +33,12 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [webhookUrl, setWebhookUrl] = useState('');
-  const [showSettings, setShowSettings] = useState(false);
+  const [sessionId] = useState(() => generateSessionId()); // Generar sessionId único al inicializar
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // URL del endpoint
+  const WEBHOOK_URL = 'https://juanjogamez.app.n8n.cloud/webhook/d69fdf7e-3f27-414c-abb2-bf9ffda43d78';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -43,16 +50,6 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
-
-    if (!webhookUrl && !showSettings) {
-      toast({
-        title: "n8n Webhook Required",
-        description: "Please configure your n8n webhook URL in settings",
-        variant: "destructive",
-      });
-      setShowSettings(true);
-      return;
-    }
 
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
@@ -67,41 +64,36 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
     setIsLoading(true);
 
     try {
-      if (webhookUrl) {
-        const response = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            message: currentInput,
-            timestamp: new Date().toISOString(),
-            context: {
-              source: 'course-chat',
-              userAgent: navigator.userAgent,
-            }
-          }),
-        });
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sessionId: sessionId,
+          action: "sendMessage",
+          chatInput: currentInput
+        }),
+      });
 
-        if (response.ok) {
-          const data = await response.json();
-          const botMessage: ChatMessage = {
-            id: (Date.now() + 1).toString(),
-            content: data.response || data.message || 'I received your message and processed it successfully.',
-            sender: 'bot',
-            timestamp: new Date(),
-          };
-          setMessages(prev => [...prev, botMessage]);
-        } else {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
+      if (response.ok) {
+        const data = await response.json();
+        const botMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          content: data.response || data.message || data.chatInput || 'I received your message and processed it successfully.',
+          sender: 'bot',
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, botMessage]);
+      } else {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
     } catch (error) {
-      console.error('Error sending message to n8n:', error);
+      console.error('Error sending message to webhook:', error);
       
       const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: 'Sorry, I encountered an error connecting to the chat service. Please check your n8n webhook configuration.',
+        content: 'Sorry, I encountered an error connecting to the chat service. Please try again later.',
         sender: 'bot',
         timestamp: new Date(),
       };
@@ -109,7 +101,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
 
       toast({
         title: "Connection Error",
-        description: "Failed to connect to n8n webhook. Please check your configuration.",
+        description: "Failed to connect to chat service. Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -163,41 +155,8 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
       {/* Header */}
       <div className="p-3 bg-primary border-b flex justify-between items-center">
         <h3 className="text-sm font-semibold text-white">Chat</h3>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setShowSettings(!showSettings)}
-          className="text-white hover:bg-white/10 h-6 w-6 p-0"
-        >
-          <Settings className="h-3 w-3" />
-        </Button>
+        <div className="text-xs text-white/70">Session: {sessionId.substring(0, 8)}...</div>
       </div>
-
-      {/* Settings Panel */}
-      {showSettings && (
-        <div className="p-3 bg-muted border-b">
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-muted-foreground">n8n Webhook URL</label>
-            <Input
-              value={webhookUrl}
-              onChange={(e) => setWebhookUrl(e.target.value)}
-              placeholder="https://your-n8n-instance.com/webhook/your-webhook-id"
-              className="text-xs"
-            />
-            <p className="text-xs text-muted-foreground">
-              Enter your n8n webhook URL from your chat workflow trigger
-            </p>
-            <Button
-              onClick={() => setShowSettings(false)}
-              size="sm"
-              variant="outline"
-              className="w-full"
-            >
-              Save Configuration
-            </Button>
-          </div>
-        </div>
-      )}
 
       {/* Messages */}
       <div className="flex-1 flex flex-col p-3">
