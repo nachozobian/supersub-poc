@@ -13,11 +13,11 @@ const courseData = {
   enrolledStudents: 125847,
 };
 
-// Simple lesson data - Updated to match Drive transcript files
+// Simple lesson data - Updated with real YouTube video titles
 const sampleLessons: Lesson[] = [
   {
     id: '1',
-    title: 'Video 1 - ZKOWOZBvAzl',
+    title: 'Intro to Project Management',
     duration: '15:30',
     videoId: 'ZKOWOZBvAzl',
     completed: false,
@@ -25,79 +25,79 @@ const sampleLessons: Lesson[] = [
   },
   {
     id: '2',
-    title: 'Video 2 - y7LDaaFeNn4',
+    title: 'Professional Project Management Skills',
     duration: '18:45',
     videoId: 'y7LDaaFeNn4',
     completed: false,
-    description: 'Segunda lección del curso con transcripción disponible'
+    description: 'Professional Project Management Skills'
   },
   {
     id: '3',
-    title: 'Video 3 - rck3MnC7OXA',
+    title: 'Project Structures & Life Cycles',
     duration: '22:15',
     videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Tercera lección del curso con transcripción disponible'
+    description: 'Project Structures & Life Cycles'
   },
   {
     id: '4',
-    title: 'Video 4 - kXkVV7PFWgE',
+    title: 'Finding Project Manager Jobs',
     duration: '19:20',
     videoId: 'kXkVV7PFWgE',
     completed: false,
-    description: 'Cuarta lección del curso con transcripción disponible'
+    description: 'Finding Project Manager Jobs'
   },
   {
     id: '5',
-    title: 'Video 5 - KH-qoTqtMXE',
+    title: 'How Company Culture Affects Project Management',
     duration: '25:10',
     videoId: 'KH-qoTqtMXE',
     completed: false,
-    description: 'Quinta lección del curso con transcripción disponible'
+    description: 'How Company Culture Affects Project Management'
   },
   {
     id: '6',
-    title: 'Video 6 - jz7tPVDwb50',
+    title: 'How to Run a Successful Meeting',
     duration: '16:35',
     videoId: 'jz7tPVDwb50',
     completed: false,
-    description: 'Sexta lección del curso con transcripción disponible'
+    description: 'How to Run a Successful Meeting'
   },
   {
     id: '7',
-    title: 'Video 7 - f0VcIWJNDAI',
+    title: 'Communicate Effectively as a Project Manager',
     duration: '21:45',
     videoId: 'f0VcIWJNDAI',
     completed: false,
-    description: 'Séptima lección del curso con transcripción disponible'
+    description: 'Communicate Effectively as a Project Manager'
   },
   {
     id: '8',
-    title: 'Video 8 - bQ1fWZBRILo',
+    title: 'Key Parts of Project Initiation',
     duration: '28:30',
     videoId: 'bQ1fWZBRILo',
     completed: false,
-    description: 'Octava lección del curso con transcripción disponible'
+    description: 'Key Parts of Project Initiation'
   },
   {
     id: '9',
-    title: 'Video 9 - 28vZa0qOHkg',
+    title: 'Communicating and Working with Stakeholders',
     duration: '17:55',
     videoId: '28vZa0qOHkg',
     completed: false,
-    description: 'Novena lección del curso con transcripción disponible'
+    description: 'Communicating and Working with Stakeholders'
   },
   {
     id: '10',
-    title: 'Video 10 - 8unOyycCpFs',
+    title: 'How to Set SMART Goals and Get Results',
     duration: '24:20',
     videoId: '8unOyycCpFs',
     completed: false,
-    description: 'Décima lección del curso con transcripción disponible'
+    description: 'How to Set SMART Goals and Get Results'
   },
   {
     id: '11',
-    title: 'Video 11 - 1eiTXSkKFtE',
+    title: 'The Best Resources and Tools to Manage Your Project',
     duration: '20:15',
     videoId: '1eiTXSkKFtE',
     completed: false,
@@ -105,11 +105,11 @@ const sampleLessons: Lesson[] = [
   },
   {
     id: '12',
-    title: 'Video 12 - _mxovBWI9mO',
+    title: 'Risk Management Basics',
     duration: '26:40',
     videoId: '_mxovBWI9mO',
     completed: false,
-    description: 'Duodécima lección del curso con transcripción disponible'
+    description: 'Risk Management Basics'
   },
 ];
 
