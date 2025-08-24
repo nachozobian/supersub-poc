@@ -13,103 +13,103 @@ const courseData = {
   enrolledStudents: 125847,
 };
 
-// Simple lesson data
+// Simple lesson data - Updated to match Drive transcript files
 const sampleLessons: Lesson[] = [
   {
     id: '1',
-    title: 'Introduction to Project Management',
-    duration: '12:45',
-    videoId: 'rck3MnC7OXA',
-    completed: true,
-    description: 'Learn the fundamentals of project management and understand the role of a project manager'
+    title: 'Video 1 - ZKOWOZBvAzl',
+    duration: '15:30',
+    videoId: 'ZKOWOZBvAzl',
+    completed: false,
+    description: 'Primera lección del curso con transcripción disponible'
   },
   {
     id: '2',
-    title: 'Become a Project Manager Without a College Degree',
-    duration: '8:30',
-    videoId: 'DgPYRU50V7E',
-    completed: true,
-    description: 'Discover career paths in project management regardless of educational background'
+    title: 'Video 2 - y7LDaaFeNn4',
+    duration: '18:45',
+    videoId: 'y7LDaaFeNn4',
+    completed: false,
+    description: 'Segunda lección del curso con transcripción disponible'
   },
   {
     id: '3',
-    title: 'Introduction to Agile Methodologies',
-    duration: '15:45',
-    videoId: 'BaH04m_fS1c',
+    title: 'Video 3 - rck3MnC7OXA',
+    duration: '22:15',
+    videoId: 'rck3MnC7OXA',
     completed: false,
-    description: 'Learn about Agile methodologies including Scrum, Kanban, XP, and Lean approaches'
+    description: 'Tercera lección del curso con transcripción disponible'
   },
   {
     id: '4',
-    title: 'Key Foundations of Agile & Scrum Project Management',
-    duration: '22:30',
-    videoId: 'WDAQq5vCMME',
+    title: 'Video 4 - kXkVV7PFWgE',
+    duration: '19:20',
+    videoId: 'kXkVV7PFWgE',
     completed: false,
-    description: 'Deep dive into Agile principles, values, and Scrum framework essentials'
+    description: 'Cuarta lección del curso con transcripción disponible'
   },
   {
     id: '5',
-    title: 'Agile Management',
-    duration: '35:20',
-    videoId: 'km7n3DI5IWk',
+    title: 'Video 5 - KH-qoTqtMXE',
+    duration: '25:10',
+    videoId: 'KH-qoTqtMXE',
     completed: false,
-    description: 'Comprehensive guide to Agile project management and delivery frameworks'
+    description: 'Quinta lección del curso con transcripción disponible'
   },
   {
     id: '6',
-    title: 'Project Tracking Methods and Examples',
-    duration: '28:15',
-    videoId: 'oLh8akA7F3I',
+    title: 'Video 6 - jz7tPVDwb50',
+    duration: '16:35',
+    videoId: 'jz7tPVDwb50',
     completed: false,
-    description: 'Learn various methods to track project progress, risks, and dependencies'
+    description: 'Sexta lección del curso con transcripción disponible'
   },
   {
     id: '7',
-    title: 'How to Find Project Management Jobs',
-    duration: '12:40',
-    videoId: 'pjkGhNVuMHQ',
+    title: 'Video 7 - f0VcIWJNDAI',
+    duration: '21:45',
+    videoId: 'f0VcIWJNDAI',
     completed: false,
-    description: 'Strategies for finding and landing project management roles in various industries'
+    description: 'Séptima lección del curso con transcripción disponible'
   },
   {
     id: '8',
-    title: 'Project Management Full Course - Part 1',
-    duration: '45:25',
-    videoId: 'eZDkSNHaWh8',
+    title: 'Video 8 - bQ1fWZBRILo',
+    duration: '28:30',
+    videoId: 'bQ1fWZBRILo',
     completed: false,
-    description: 'Comprehensive overview covering the first three courses of the specialization'
+    description: 'Octava lección del curso con transcripción disponible'
   },
   {
     id: '9',
-    title: 'Complete Google Project Management Certificate Overview',
-    duration: '18:35',
-    videoId: 'DRe_5cHooeo',
+    title: 'Video 9 - 28vZa0qOHkg',
+    duration: '17:55',
+    videoId: '28vZa0qOHkg',
     completed: false,
-    description: 'Overview of the complete certificate program including new AI modules'
+    description: 'Novena lección del curso con transcripción disponible'
   },
   {
     id: '10',
-    title: 'Complete Course in 2 HOURS',
-    duration: '120:00',
-    videoId: 'SJcHiiNpUds',
+    title: 'Video 10 - 8unOyycCpFs',
+    duration: '24:20',
+    videoId: '8unOyycCpFs',
     completed: false,
-    description: 'Condensed version of the entire Google Project Management Certificate course'
+    description: 'Décima lección del curso con transcripción disponible'
   },
   {
     id: '11',
-    title: 'Project Planning and Goal Setting',
-    duration: '20:30',
-    videoId: 'rck3MnC7OXA',
+    title: 'Video 11 - 1eiTXSkKFtE',
+    duration: '20:15',
+    videoId: '1eiTXSkKFtE',
     completed: false,
-    description: 'Master the art of setting SMART goals and creating comprehensive project plans'
+    description: 'Undécima lección del curso con transcripción disponible'
   },
   {
     id: '12',
-    title: 'Advanced Project Management Techniques',
-    duration: '25:55',
-    videoId: 'rck3MnC7OXA',
+    title: 'Video 12 - _mxovBWI9mO',
+    duration: '26:40',
+    videoId: '_mxovBWI9mO',
     completed: false,
-    description: 'Advanced strategies for complex project management scenarios'
+    description: 'Duodécima lección del curso con transcripción disponible'
   },
 ];
 
