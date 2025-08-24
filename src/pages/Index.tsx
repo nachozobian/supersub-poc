@@ -27,7 +27,7 @@ const sampleLessons: Lesson[] = [
     id: '2',
     title: 'Project Life Cycle and Methodologies',
     duration: '18:30',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'ZKOL-rZ79gs',
     completed: true,
     description: 'Explore different project management methodologies including Waterfall and Agile'
   },
@@ -35,7 +35,7 @@ const sampleLessons: Lesson[] = [
     id: '3',
     title: 'Project Planning and Goal Setting',
     duration: '22:15',
-    videoId: 'rck3MnC7OXA',
+    videoId: '7ldiVDhp3J4',
     completed: false,
     description: 'Master the art of setting SMART goals and creating comprehensive project plans'
   },
@@ -43,7 +43,7 @@ const sampleLessons: Lesson[] = [
     id: '4',
     title: 'Risk Management and Mitigation',
     duration: '16:20',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'UvEiSa6_EPA',
     completed: false,
     description: 'Identify, assess, and develop strategies to manage project risks effectively'
   },
@@ -51,7 +51,7 @@ const sampleLessons: Lesson[] = [
     id: '5',
     title: 'Team Management and Communication',
     duration: '24:10',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'SWY7mIkL6_c',
     completed: false,
     description: 'Build and lead high-performing teams with effective communication strategies'
   },
@@ -59,7 +59,7 @@ const sampleLessons: Lesson[] = [
     id: '6',
     title: 'Project Scheduling and Time Management',
     duration: '19:35',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'p6WmKFXzkMk',
     completed: false,
     description: 'Create realistic project schedules and manage time effectively across all phases'
   },
@@ -67,7 +67,7 @@ const sampleLessons: Lesson[] = [
     id: '7',
     title: 'Budget Management and Resource Allocation',
     duration: '21:50',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'MsSfmb9mFiw',
     completed: false,
     description: 'Learn to create and manage project budgets and allocate resources efficiently'
   },
@@ -75,7 +75,7 @@ const sampleLessons: Lesson[] = [
     id: '8',
     title: 'Quality Management and Control',
     duration: '17:25',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'FRr6wfP40dA',
     completed: false,
     description: 'Implement quality assurance processes and control measures for project success'
   },
@@ -83,7 +83,7 @@ const sampleLessons: Lesson[] = [
     id: '9',
     title: 'Stakeholder Management',
     duration: '15:40',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'XjJQBjWYDTs',
     completed: false,
     description: 'Identify, engage, and manage stakeholders throughout the project lifecycle'
   },
@@ -91,7 +91,7 @@ const sampleLessons: Lesson[] = [
     id: '10',
     title: 'Agile Project Management',
     duration: '26:15',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'Z9QbYZh1YXY',
     completed: false,
     description: 'Deep dive into Agile methodologies, Scrum, and iterative project management'
   },
@@ -99,7 +99,7 @@ const sampleLessons: Lesson[] = [
     id: '11',
     title: 'Project Monitoring and Performance',
     duration: '20:30',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'VtRH85ms5W0',
     completed: false,
     description: 'Track project progress, measure performance, and implement corrective actions'
   },
@@ -107,7 +107,7 @@ const sampleLessons: Lesson[] = [
     id: '12',
     title: 'Project Closure and Lessons Learned',
     duration: '14:55',
-    videoId: 'rck3MnC7OXA',
+    videoId: 'QJNZX3P_1U4',
     completed: false,
     description: 'Successfully close projects and capture valuable lessons for future initiatives'
   },
