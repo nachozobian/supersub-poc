@@ -215,7 +215,7 @@ const Index = () => {
               Your personal tutor for questions and explanations
             </p>
           </div>
-          <div className="flex-1 min-h-0">
+          <div className="h-96">
             <ChatInterface onTimestampClick={handleTimestampClick} />
           </div>
         </div>
