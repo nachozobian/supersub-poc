@@ -154,9 +154,9 @@ const Index = () => {
   return (
     <div className="h-screen bg-background flex flex-col">
       {/* Main Content */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-1">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-10 gap-1">
         {/* Video area */}
-        <div className="p-4 flex flex-col">
+        <div className="lg:col-span-6 p-4 flex flex-col h-full">
           <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
             <YouTubePlayer
               key={currentLesson.videoId}
@@ -167,7 +167,7 @@ const Index = () => {
           </div>
           
           {/* Current Lesson Info */}
-          <div className="mt-4 p-4 bg-card rounded-lg border">
+          <div className="mt-4 p-4 bg-card rounded-lg border flex-1">
             <h2 className="text-lg font-semibold text-foreground mb-2">
               {currentLesson.title}
             </h2>
@@ -185,7 +185,7 @@ const Index = () => {
         </div>
         
         {/* Lesson List Sidebar */}
-        <div className="bg-card border-r flex flex-col">
+        <div className="lg:col-span-2 bg-card border-r flex flex-col h-full">
           <div className="p-3 border-b bg-muted/50">
             <h3 className="font-semibold text-sm text-foreground">Course Content</h3>
             <p className="text-xs text-muted-foreground mt-1">
@@ -208,14 +208,14 @@ const Index = () => {
         </div>
 
         {/* Chat Sidebar */}
-        <div className="bg-card border-l flex flex-col">
+        <div className="lg:col-span-2 bg-card border-l flex flex-col h-full">
           <div className="p-3 border-b bg-muted/50">
             <h3 className="font-semibold text-sm text-foreground">AI Assistant</h3>
             <p className="text-xs text-muted-foreground mt-1">
               Your personal tutor for questions and explanations
             </p>
           </div>
-          <div className="h-96">
+          <div className="flex-1">
             <ChatInterface onTimestampClick={handleTimestampClick} />
           </div>
         </div>
