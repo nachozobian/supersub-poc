@@ -70,7 +70,8 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          chatInput: currentInput
+          chatInput: currentInput,
+          sessionId: sessionId
         }),
       });
 
