@@ -64,8 +64,8 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
     setIsLoading(true);
 
     try {
-      // Fetch without timeout - waits indefinitely for webhook response
-      const controller = new AbortController();
+      console.log('Sending message to webhook, waiting for response...');
+      // Fetch without any timeout - will wait indefinitely for webhook response
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
@@ -75,8 +75,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
           chatInput: currentInput,
           sessionId: sessionId
         }),
-        signal: controller.signal,
-        // No timeout specified - will wait indefinitely for webhook response
+        // Explicitly no timeout, no signal - wait indefinitely
       });
 
       if (response.ok) {
