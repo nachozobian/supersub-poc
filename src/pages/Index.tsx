@@ -22,7 +22,7 @@ const sampleLessons: Lesson[] = [
     videoId: 'rck3MnC7OXA',
     videoUrl: 'https://www.youtube.com/watch?v=rck3MnC7OXA&t=1s',
     completed: false,
-    description: 'Primera lección del curso con transcripción disponible'
+    description: 'First course lesson with transcription available'
   },
   {
     id: '2',
@@ -112,7 +112,7 @@ const sampleLessons: Lesson[] = [
     videoId: 'ZKOwOZBvAzI',
     videoUrl: 'https://youtu.be/ZKOwOZBvAzI?si=7KDGL7QMSooHi5y_',
     completed: false,
-    description: 'Undécima lección del curso con transcripción disponible'
+    description: 'Eleventh course lesson with transcription available'
   },
   {
     id: '12',
@@ -129,23 +129,8 @@ const Index = () => {
   const [currentLesson, setCurrentLesson] = useState<Lesson>(sampleLessons[0]);
   const [startTime, setStartTime] = useState(0);
 
-  // Debug: Log current lesson info
-  console.log('=== DEBUG INFO ===');
-  console.log('Current lesson:', {
-    id: currentLesson.id,
-    title: currentLesson.title,
-    videoId: currentLesson.videoId,
-    videoUrl: currentLesson.videoUrl
-  });
-  console.log('All available lessons:', sampleLessons.map(l => ({ id: l.id, videoId: l.videoId, title: l.title })));
-  console.log('==================');
 
   const handleLessonSelect = (lesson: Lesson) => {
-    console.log('Selecting lesson:', {
-      id: lesson.id,
-      title: lesson.title,
-      videoId: lesson.videoId
-    });
     setCurrentLesson(lesson);
     setStartTime(0);
   };
@@ -192,9 +177,9 @@ const Index = () => {
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                Duración: {currentLesson.duration}
+                Duration: {currentLesson.duration}
               </span>
-              <span>Lección {currentLesson.id} de {sampleLessons.length}</span>
+              <span>Lesson {currentLesson.id} of {sampleLessons.length}</span>
             </div>
           </div>
         </div>
@@ -202,9 +187,9 @@ const Index = () => {
         {/* Lesson List Sidebar */}
         <div className="lg:col-span-2 bg-card border-r flex flex-col">
           <div className="p-3 border-b bg-muted/50">
-            <h3 className="font-semibold text-sm text-foreground">Contenido del Curso</h3>
+            <h3 className="font-semibold text-sm text-foreground">Course Content</h3>
             <p className="text-xs text-muted-foreground mt-1">
-              {completedLessons} de {sampleLessons.length} lecciones completadas
+              {completedLessons} of {sampleLessons.length} lessons completed
             </p>
             <div className="w-full bg-muted rounded-full h-1.5 mt-2">
               <div 
@@ -225,9 +210,9 @@ const Index = () => {
         {/* Chat Sidebar */}
         <div className="lg:col-span-2 bg-card border-l flex flex-col">
           <div className="p-3 border-b bg-muted/50">
-            <h3 className="font-semibold text-sm text-foreground">Asistente IA</h3>
+            <h3 className="font-semibold text-sm text-foreground">AI Assistant</h3>
             <p className="text-xs text-muted-foreground mt-1">
-              Tu tutor personal para dudas y explicaciones
+              Your personal tutor for questions and explanations
             </p>
           </div>
           <div className="flex-1 min-h-0">
