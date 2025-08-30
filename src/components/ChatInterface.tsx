@@ -77,7 +77,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
         }),
         // Explicitly no timeout, no signal - wait indefinitely
       });
-
+      console.log(response)
       if (response.ok) {
         let data;
         let responseContent;
