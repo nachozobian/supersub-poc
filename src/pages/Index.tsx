@@ -46,8 +46,8 @@ const sampleLessons: Lesson[] = [
     id: '4',
     title: 'Finding Project Manager Jobs',
     duration: '19:20',
-    videoId: 'f0VcIWJNDAI',
-    videoUrl: 'https://youtu.be/f0VcIWJNDAI?si=t7nZq3v5mrfmzV4R',
+    videoId: 'y7LDaaFeNn4',
+    videoUrl: 'https://youtu.be/y7LDaaFeNn4?si=O0OWSZgHEP0BjnRs',
     completed: false,
     description: 'Finding Project Manager Jobs'
   },
