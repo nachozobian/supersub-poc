@@ -77,39 +77,38 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
       });
 
       if (response.ok) {
-        let data;
         let responseContent;
         
         try {
-          // Check content type to determine how to parse
-          const contentType = response.headers.get('content-type');
+          // First read the response as text to avoid consuming the stream
+          const responseText = await response.text();
+          console.log('Raw webhook response:', responseText);
           
-          if (contentType && contentType.includes('application/json')) {
-            data = await response.json();
-            console.log('Webhook JSON response:', data);
-            
-            // Look for response in different possible fields from the Respond node
-            responseContent = data.output || data.response || data.message || data.chatInput || data.text || data.content || data.answer;
-            
-            // If no specific field found, use entire response as string
-            if (!responseContent && typeof data === 'object') {
-              responseContent = JSON.stringify(data, null, 2);
-            }
+          // If empty response, handle it
+          if (!responseText.trim()) {
+            responseContent = 'Empty response received from server';
           } else {
-            // Handle as text response
-            responseContent = await response.text();
-            console.log('Webhook text response:', responseContent);
+            // Try to parse as JSON first
+            try {
+              const data = JSON.parse(responseText);
+              console.log('Parsed JSON response:', data);
+              
+              // Look for response in different possible fields from the Respond node
+              responseContent = data.output || data.response || data.message || data.chatInput || data.text || data.content || data.answer;
+              
+              // If no specific field found, use entire response as string
+              if (!responseContent && typeof data === 'object') {
+                responseContent = JSON.stringify(data, null, 2);
+              }
+            } catch (jsonError) {
+              // Not JSON, use as plain text
+              console.log('Response is not JSON, using as text');
+              responseContent = responseText;
+            }
           }
-        } catch (parseError) {
-          console.error('Error parsing webhook response:', parseError);
-          // Fallback to text if JSON parsing fails
-          try {
-            responseContent = await response.text();
-            console.log('Fallback text response:', responseContent);
-          } catch (textError) {
-            console.error('Error reading response as text:', textError);
-            responseContent = 'Error: Unable to parse server response';
-          }
+        } catch (error) {
+          console.error('Error reading webhook response:', error);
+          responseContent = 'Error: Unable to read server response';
         }
         
         // If still no content, show error message
