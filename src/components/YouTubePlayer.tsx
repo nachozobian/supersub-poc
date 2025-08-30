@@ -25,13 +25,8 @@ export const YouTubePlayer = ({ videoId, videoUrl, startTime = 0, onReady }: You
   };
 
   useEffect(() => {
-    console.log('YouTubePlayer: videoId changed to:', videoId);
-    console.log('YouTubePlayer: videoUrl:', videoUrl);
-    console.log('YouTubePlayer: startTime:', startTime);
-    
     setIsLoading(true);
     
-    // Simular carga
     const timer = setTimeout(() => {
       setIsLoading(false);
       onReady?.();
@@ -48,7 +43,7 @@ export const YouTubePlayer = ({ videoId, videoUrl, startTime = 0, onReady }: You
         <div className="absolute inset-0 flex items-center justify-center bg-black text-white z-10">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
-            <p>Cargando video: {videoId}</p>
+            <p>Loading video...</p>
           </div>
         </div>
       )}
@@ -57,10 +52,9 @@ export const YouTubePlayer = ({ videoId, videoUrl, startTime = 0, onReady }: You
         <div className="absolute inset-0 flex items-center justify-center bg-red-900/20 text-white z-10">
           <div className="text-center p-4">
             <div className="text-red-400 mb-2">⚠️</div>
-            <p className="text-sm mb-2">Error cargando video</p>
-            <p className="text-xs text-red-300">ID: {videoId}</p>
+            <p className="text-sm mb-2">Error loading video</p>
             <p className="text-xs text-red-300 mt-1">
-              El video no está disponible o no permite reproducción embebida
+              Video is not available or does not allow embedded playback
             </p>
           </div>
         </div>
@@ -75,23 +69,16 @@ export const YouTubePlayer = ({ videoId, videoUrl, startTime = 0, onReady }: You
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         onLoad={() => {
-          console.log('YouTube iframe loaded for video:', videoId);
           setIsLoading(false);
           setHasError(false);
           onReady?.();
         }}
         onError={() => {
-          console.error('YouTube iframe failed to load video:', videoId);
           setIsLoading(false);
           setHasError(true);
         }}
       />
       
-      {/* Debug info */}
-      <div className="absolute top-2 left-2 bg-black/70 text-white text-xs p-1 rounded z-20">
-        Video ID: {videoId}
-        {hasError && <span className="text-red-400 ml-2">ERROR</span>}
-      </div>
     </div>
   );
 };
