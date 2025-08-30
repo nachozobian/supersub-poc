@@ -19,8 +19,8 @@ const sampleLessons: Lesson[] = [
     id: '1',
     title: 'Intro to Project Management',
     duration: '15:30',
-    videoId: 'ZKOWOZBvAzl',
-    videoUrl: 'https://www.youtube.com/watch?v=ZKOWOZBvAzl',
+    videoId: 'rck3MnC7OXA',
+    videoUrl: 'https://www.youtube.com/watch?v=rck3MnC7OXA&t=1s',
     completed: false,
     description: 'Primera lección del curso con transcripción disponible'
   },
@@ -28,8 +28,8 @@ const sampleLessons: Lesson[] = [
     id: '2',
     title: 'Professional Project Management Skills',
     duration: '18:45',
-    videoId: 'y7LDaaFeNn4',
-    videoUrl: 'https://www.youtube.com/watch?v=y7LDaaFeNn4',
+    videoId: 'KH-qoTqtMXE',
+    videoUrl: 'https://www.youtube.com/watch?v=KH-qoTqtMXE&t=1s',
     completed: false,
     description: 'Professional Project Management Skills'
   },
@@ -37,8 +37,8 @@ const sampleLessons: Lesson[] = [
     id: '3',
     title: 'Project Structures & Life Cycles',
     duration: '22:15',
-    videoId: 'rck3MnC7OXA',
-    videoUrl: 'https://www.youtube.com/watch?v=rck3MnC7OXA',
+    videoId: '8unOyycCpFs',
+    videoUrl: 'https://www.youtube.com/watch?v=8unOyycCpFs&list=PLTZYG7bZ1u6puLWxUtqAjZkIB4dB_JFzk&index=3',
     completed: false,
     description: 'Project Structures & Life Cycles'
   },
