@@ -79,22 +79,44 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        console.log('Webhook response:', data); // Para debugging
+        let data;
+        let responseContent;
         
-        // Buscar la respuesta en diferentes campos posibles del nodo Respond
-        let responseContent = data.output || data.response || data.message || data.chatInput || data.text || data.content || data.answer;
-        
-        // Si no encontramos un campo específico, usar toda la respuesta como string
-        if (!responseContent && typeof data === 'string') {
-          responseContent = data;
-        } else if (!responseContent && typeof data === 'object') {
-          responseContent = JSON.stringify(data, null, 2);
+        try {
+          // Check content type to determine how to parse
+          const contentType = response.headers.get('content-type');
+          
+          if (contentType && contentType.includes('application/json')) {
+            data = await response.json();
+            console.log('Webhook JSON response:', data);
+            
+            // Look for response in different possible fields from the Respond node
+            responseContent = data.output || data.response || data.message || data.chatInput || data.text || data.content || data.answer;
+            
+            // If no specific field found, use entire response as string
+            if (!responseContent && typeof data === 'object') {
+              responseContent = JSON.stringify(data, null, 2);
+            }
+          } else {
+            // Handle as text response
+            responseContent = await response.text();
+            console.log('Webhook text response:', responseContent);
+          }
+        } catch (parseError) {
+          console.error('Error parsing webhook response:', parseError);
+          // Fallback to text if JSON parsing fails
+          try {
+            responseContent = await response.text();
+            console.log('Fallback text response:', responseContent);
+          } catch (textError) {
+            console.error('Error reading response as text:', textError);
+            responseContent = 'Error: Unable to parse server response';
+          }
         }
         
-        // Si aún no hay contenido, mostrar un mensaje de error
+        // If still no content, show error message
         if (!responseContent) {
-          responseContent = 'Error: No se recibió respuesta del servidor';
+          responseContent = 'Error: No response received from server';
         }
         
         const botMessage: ChatMessage = {
