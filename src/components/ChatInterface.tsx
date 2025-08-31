@@ -171,17 +171,56 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
         }
     };
 
-    // Parsea mensajes para detectar enlaces tipo [texto](video:VIDEOID:SEGUNDOS)
+    // Parsea mensajes para detectar enlaces tipo [texto](video:VIDEOID:SEGUNDOS) y URLs de YouTube
     const parseMessageContent = (content: string) => {
-        const linkRegex = /\[([^\]]+)\]\(video:([^:]+):(\d+)\)/g;
+        const timestampLinkRegex = /\[([^\]]+)\]\(video:([^:]+):(\d+)\)/g;
+        const youtubeUrlRegex = /https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)(?:[&?]t=(\d+))?/g;
+        
         const parts: Array<
             | { type: 'text'; content: string }
             | { type: 'link'; content: string; videoId: string; timestamp: number }
         > = [];
-        let lastIndex = 0;
+        
+        // Crear una lista de todas las coincidencias con sus posiciones
+        const allMatches: Array<{
+            index: number;
+            length: number;
+            content: string;
+            videoId: string;
+            timestamp: number;
+        }> = [];
 
+        // Buscar enlaces de timestamp personalizados
         let match: RegExpExecArray | null;
-        while ((match = linkRegex.exec(content)) !== null) {
+        while ((match = timestampLinkRegex.exec(content)) !== null) {
+            allMatches.push({
+                index: match.index,
+                length: match[0].length,
+                content: match[1],
+                videoId: match[2],
+                timestamp: parseInt(match[3], 10)
+            });
+        }
+
+        // Buscar URLs de YouTube
+        while ((match = youtubeUrlRegex.exec(content)) !== null) {
+            const videoId = match[1];
+            const timestamp = match[2] ? parseInt(match[2], 10) : 0;
+            allMatches.push({
+                index: match.index,
+                length: match[0].length,
+                content: match[0], // Usar la URL completa como texto del enlace
+                videoId: videoId,
+                timestamp: timestamp
+            });
+        }
+
+        // Ordenar matches por posición
+        allMatches.sort((a, b) => a.index - b.index);
+
+        let lastIndex = 0;
+        for (const match of allMatches) {
+            // Agregar texto antes del match
             if (match.index > lastIndex) {
                 parts.push({
                     type: 'text',
@@ -189,16 +228,18 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
                 });
             }
 
+            // Agregar el link
             parts.push({
                 type: 'link',
-                content: match[1],
-                videoId: match[2],
-                timestamp: parseInt(match[3], 10)
+                content: match.content,
+                videoId: match.videoId,
+                timestamp: match.timestamp
             });
 
-            lastIndex = match.index + match[0].length;
+            lastIndex = match.index + match.length;
         }
 
+        // Agregar texto restante
         if (lastIndex < content.length) {
             parts.push({
                 type: 'text',
