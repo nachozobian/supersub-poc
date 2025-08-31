@@ -140,6 +140,31 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
                     timestamp: new Date(),
                 };
                 setMessages(prev => [...prev, botMessage]);
+
+                // Auto-play first YouTube link from bot response
+                const autoPlayFirstLink = (content: string) => {
+                    const timestampLinkRegex = /\[([^\]]+)\]\(video:([^:]+):(\d+)\)/;
+                    const youtubeUrlRegex = /https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)(?:[&?]t=(\d+))?/;
+                    
+                    // Try timestamp links first
+                    const timestampMatch = timestampLinkRegex.exec(content);
+                    if (timestampMatch) {
+                        const videoId = timestampMatch[2];
+                        const timestamp = parseInt(timestampMatch[3], 10);
+                        onTimestampClick?.(videoId, timestamp);
+                        return;
+                    }
+                    
+                    // Then try YouTube URLs
+                    const youtubeMatch = youtubeUrlRegex.exec(content);
+                    if (youtubeMatch) {
+                        const videoId = youtubeMatch[1];
+                        const timestamp = youtubeMatch[2] ? parseInt(youtubeMatch[2], 10) : 0;
+                        onTimestampClick?.(videoId, timestamp);
+                    }
+                };
+
+                autoPlayFirstLink(responseContent);
             } else {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
