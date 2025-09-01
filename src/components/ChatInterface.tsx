@@ -276,7 +276,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
     };
 
     return (
-        <div className="h-full flex flex-col bg-card rounded-lg border overflow-hidden">
+        <div className="h-[600px] flex flex-col bg-card rounded-lg border overflow-hidden">
             {/* Header */}
             <div className="p-3 bg-primary border-b flex justify-between items-center">
                 <h3 className="text-sm font-semibold text-white">Chat</h3>
