@@ -140,11 +140,10 @@ const Index = () => {
     if (lesson) {
       setCurrentLesson(lesson);
       setStartTime(timestamp);
-      
+
       setTimeout(() => {
-        if ((window as any).seekToTime) {
-          (window as any).seekToTime(timestamp);
-        }
+        type WindowWithSeek = Window & { seekToTime?: (time: number) => void };
+        (window as WindowWithSeek).seekToTime?.(timestamp);
       }, 1000);
     }
   };
@@ -152,11 +151,11 @@ const Index = () => {
   const completedLessons = sampleLessons.filter(lesson => lesson.completed).length;
 
   return (
-    <div className="h-screen bg-background flex flex-col">
+    <div className="h-screen bg-background flex flex-col overflow-hidden">
       {/* Main Content */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-10 gap-1">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-10 gap-1 overflow-hidden min-h-0">
         {/* Video area */}
-        <div className="lg:col-span-6 p-4 flex flex-col h-full">
+        <div className="lg:col-span-6 p-4 flex flex-col h-full overflow-hidden">
           <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
             <YouTubePlayer
               key={currentLesson.videoId}
@@ -165,9 +164,9 @@ const Index = () => {
               startTime={startTime}
             />
           </div>
-          
+
           {/* Current Lesson Info */}
-          <div className="mt-4 p-4 bg-card rounded-lg border flex-1">
+          <div className="mt-4 p-4 bg-card rounded-lg border flex-1 overflow-y-auto">
             <h2 className="text-lg font-semibold text-foreground mb-2">
               {currentLesson.title}
             </h2>
@@ -183,9 +182,9 @@ const Index = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Lesson List Sidebar */}
-        <div className="lg:col-span-2 bg-card border-r flex flex-col h-full">
+        <div className="lg:col-span-2 bg-card border-r flex flex-col h-full overflow-hidden">
           <div className="p-3 border-b bg-muted/50">
             <h3 className="font-semibold text-sm text-foreground">Course Content</h3>
             <p className="text-xs text-muted-foreground mt-1">
@@ -208,14 +207,14 @@ const Index = () => {
         </div>
 
         {/* Chat Sidebar */}
-        <div className="lg:col-span-2 bg-card border-l flex flex-col h-full">
+        <div className="lg:col-span-2 bg-card border-l flex flex-col h-full overflow-hidden min-h-0">
           <div className="p-3 border-b bg-muted/50">
             <h3 className="font-semibold text-sm text-foreground">AI Assistant</h3>
             <p className="text-xs text-muted-foreground mt-1">
               Your personal tutor for questions and explanations
             </p>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 min-h-0 overflow-hidden">
             <ChatInterface onTimestampClick={handleTimestampClick} />
           </div>
         </div>
