@@ -244,7 +244,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-card rounded-lg border overflow-hidden">
+    <div className="flex flex-col h-full min-h-0 bg-card rounded-lg border overflow-hidden">
       {/* Header (made tighter) */}
       <div className="px-3 py-2 bg-primary border-b flex justify-between items-center">
         <h3 className="text-xs font-semibold text-white">Chat</h3>
@@ -254,8 +254,11 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
       </div>
 
       {/* Messages (the only scrollable area) */}
-      <div className="flex-1 flex flex-col px-2 py-2">
-        <div ref={messagesContainerRef} className="flex-1 overflow-y-auto space-y-2 pr-1">
+      <div className="flex-1 flex flex-col px-2 py-2 min-h-0">
+        <div
+          ref={messagesContainerRef}
+          className="flex-1 overflow-y-auto space-y-2 pr-1"
+        >
           {messages.map((message) => (
             <div
               key={message.id}

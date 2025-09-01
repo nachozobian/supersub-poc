@@ -153,7 +153,7 @@ const Index = () => {
   return (
     <div className="h-screen bg-background flex flex-col overflow-hidden">
       {/* Main Content */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-10 gap-1 overflow-hidden">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-10 gap-1 overflow-hidden min-h-0">
         {/* Video area */}
         <div className="lg:col-span-6 p-4 flex flex-col h-full overflow-hidden">
           <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
@@ -207,14 +207,14 @@ const Index = () => {
         </div>
 
         {/* Chat Sidebar */}
-        <div className="lg:col-span-2 bg-card border-l flex flex-col h-full overflow-hidden">
+        <div className="lg:col-span-2 bg-card border-l flex flex-col h-full overflow-hidden min-h-0">
           <div className="p-3 border-b bg-muted/50">
             <h3 className="font-semibold text-sm text-foreground">AI Assistant</h3>
             <p className="text-xs text-muted-foreground mt-1">
               Your personal tutor for questions and explanations
             </p>
           </div>
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 min-h-0 overflow-hidden">
             <ChatInterface onTimestampClick={handleTimestampClick} />
           </div>
         </div>
