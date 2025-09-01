@@ -14,15 +14,13 @@ interface ChatMessage {
 
 interface ChatInterfaceProps {
   onTimestampClick?: (videoId: string, timestamp: number) => void;
-  /** Overall fixed height in px (defaults to 320 for a smaller footprint) */
-  height?: number;
 }
 
 const generateSessionId = (): string =>
   Math.random().toString(36).substring(2, 15) +
   Math.random().toString(36).substring(2, 15);
 
-export const ChatInterface = ({ onTimestampClick, height = 320 }: ChatInterfaceProps) => {
+export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
@@ -35,13 +33,16 @@ export const ChatInterface = ({ onTimestampClick, height = 320 }: ChatInterfaceP
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId] = useState(() => generateSessionId());
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   const WEBHOOK_URL = 'https://juanjogamez2.app.n8n.cloud/webhook/d69fdf7e-3f27-414c-abb2-bf9ffda43d78';
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const container = messagesContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
   };
 
   useEffect(() => {
@@ -243,10 +244,7 @@ export const ChatInterface = ({ onTimestampClick, height = 320 }: ChatInterfaceP
   };
 
   return (
-    <div
-      className="flex flex-col bg-card rounded-lg border overflow-hidden"
-      style={{ height }} // smaller by default, easily adjustable
-    >
+    <div className="flex flex-col h-full min-h-0 bg-card rounded-lg border overflow-hidden">
       {/* Header (made tighter) */}
       <div className="px-3 py-2 bg-primary border-b flex justify-between items-center">
         <h3 className="text-xs font-semibold text-white">Chat</h3>
@@ -256,8 +254,11 @@ export const ChatInterface = ({ onTimestampClick, height = 320 }: ChatInterfaceP
       </div>
 
       {/* Messages (the only scrollable area) */}
-      <div className="flex-1 flex flex-col px-2 py-2">
-        <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+      <div className="flex-1 flex flex-col px-2 py-2 min-h-0">
+        <div
+          ref={messagesContainerRef}
+          className="flex-1 overflow-y-auto space-y-2 pr-1"
+        >
           {messages.map((message) => (
             <div
               key={message.id}
@@ -315,8 +316,6 @@ export const ChatInterface = ({ onTimestampClick, height = 320 }: ChatInterfaceP
               </div>
             </div>
           )}
-
-          <div ref={messagesEndRef} />
         </div>
 
         {/* Input (compact) */}
