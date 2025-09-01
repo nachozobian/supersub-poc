@@ -41,7 +41,7 @@ export const ChatInterface = ({ onTimestampClick }: ChatInterfaceProps) => {
   const scrollToBottom = () => {
     const container = messagesContainerRef.current;
     if (container) {
-      container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+      container.scrollTop = container.scrollHeight;
     }
   };
 
