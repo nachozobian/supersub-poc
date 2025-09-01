@@ -183,12 +183,10 @@ export const ChatInterface = ({ onTimestampClick, height = 320 }: ChatInterfaceP
     const youtubeUrlRegex =
       /https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)(?:[&?]t=(\d+))?/g;
 
-    const parts:
-      | Array<
-          | { type: 'text'; content: string }
-          | { type: 'link'; content: string; videoId: string; timestamp: number }
-        >
-      | [] = [];
+    const parts: Array<
+      | { type: 'text'; content: string }
+      | { type: 'link'; content: string; videoId: string; timestamp: number }
+    > = [];
 
     const allMatches: Array<{
       index: number;
